@@ -1,0 +1,289 @@
+/* === Upravené pravidlo pro body === */
+body {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    color: white;
+    /* Váš upravený text-shadow */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 1);
+    scroll-behavior: smooth;
+    background-color: #0f0f0f;
+}
+
+/* ===== NOVÉ OBECNÉ PRAVIDLO PRO VŠECHNY SEKCE ===== */
+section {
+   min-height: 100svh; /* !!! ZMĚNA: Použijeme Small Viewport Height !!! */   
+   box-sizing: border-box; /* Důležité, aby padding byl součástí výšky */
+}
+/* ================================================== */
+
+
+#video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background-color: black;
+}
+
+#video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Pravidlo pro úvodní sekci - ZMĚNA SELEKTORU z .content na #content */
+#content {
+    position: relative;
+    z-index: 1;
+    width: 90%; /* Vráceno pro omezení šířky obsahu */
+    max-width: 1000px; /* Vráceno */
+    margin: 0 auto; /* Vráceno pro centrování bloku */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    /* box-sizing: border-box; - Nyní řešeno obecným pravidlem pro section */
+    padding-bottom: 80px; /* Ponecháno pro místo na indikátor */
+}
+
+/* Styly pro textový obsah v úvodní sekci */
+#author, #title, #exhibitors, #location-date {
+    margin: 0.5em 0;
+}
+
+#author {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(1.2rem, 2vw + 0.8rem, 2rem);
+}
+
+#title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw + 1rem, 4.5rem);
+    margin: 0.3em 0;
+    letter-spacing: 0.05em;
+}
+
+#exhibitors {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.5vw + 0.6rem, 1.4rem);
+    line-height: 1.5;
+    max-width: 80%;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0.8em 0;
+}
+
+#location-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.5vw + 0.7rem, 1.5rem);
+}
+
+/* Styly pro fade-in efekt */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 2.5s ease-out, transform 2.0s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media query pro mobilní zařízení */
+@media (max-width: 480px) {
+    #title {
+         font-size: clamp(1.8rem, 8vw + 1rem, 3rem);
+    }
+     #author, #location-date, #exhibitors { /* Přidáno #exhibitors */
+         margin: 0.8em 0;
+     }
+     /* Můžeme zmenšit padding pro #content na mobilu, aby bylo více místa */
+     #content {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 60px; /* Menší padding dole */
+        width: 95%; /* Trochu širší */
+     }
+}
+
+/* Styly pro scroll indikátor */
+.scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeInScroll 1s ease-in-out 8s forwards, bounceScroll 2s infinite 9s; /* Posunut start animací kvůli delšímu textu? */
+    cursor: pointer;
+    will-change: opacity, transform;
+}
+
+.scroll-indicator span {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes fadeInScroll {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounceScroll {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+
+/* Styly pro další obsahové sekce */
+.content-section {
+    padding: 6vh 5vw;
+    position: relative; /* Může zůstat pro vnitřní pozicování */
+    z-index: 1;
+    background-color: rgba(15, 15, 15, 0.8);
+    color: #eee;
+    text-shadow: none;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Styly pro H2, P, UL, LI uvnitř .content-section */
+.content-section h2,
+.content-section p, /* Aplikováno i na p */
+.content-section ul, /* Aplikováno i na ul */
+.content-section .role-block { /* Aplikováno i na role-block */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw + 0.8rem, 3rem);
+    font-weight: 600;
+    margin-bottom: 1em;
+    /* text-align: center; - Zdědí se */
+    color: #fff;
+}
+
+.content-section p {
+    margin-bottom: 1em;
+    /* text-align: center; - Zdědí se */
+}
+
+.content-section ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5em; /* Upraveno? */
+    margin-bottom: 1.5em; /* Přidáno? */
+    /* text-align: center; - Zdědí se */
+}
+
+.content-section li {
+    margin-bottom: 0.5em;
+    font-size: clamp(1rem, 1.5vw + 0.7rem, 1.3rem);
+}
+
+/* Styly pro Kurátorku/Produkci */
+.role-block {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    /* text-align: center; - Zdědí se */
+}
+
+.role-label {
+    display: block;
+    font-size: clamp(0.9rem, 1.2vw + 0.6rem, 1.1rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.2em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.role-name {
+    display: block;
+    font-size: clamp(1rem, 1.5vw + 0.7rem, 1.3rem);
+    font-weight: 600;
+    color: #fff;
+}
+
+#authors p:last-of-type {
+    margin-bottom: 1.5em;
+}
+
+/* === Styly pro upravenou sekci Kontakt === */
+
+#contact h2 {
+    margin-bottom: 1.5em; /* Větší mezera pod nadpisem */
+}
+
+#contact .contact-info {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: clamp(1.1rem, 1.8vw + 0.7rem, 1.5rem); /* Větší písmo kontaktů */
+    font-weight: 400; /* Mírně tučnější */
+}
+
+#contact a {
+    color: #eee; /* Stejná barva jako okolní text */
+    text-decoration: none; /* Žádné podtržení */
+    border-bottom: 1px solid rgba(238, 238, 238, 0.5); /* Jemné spodní podtržení */
+    padding-bottom: 2px; /* Malý prostor pod podtržením */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Plynulý přechod */
+}
+
+#contact a:hover,
+#contact a:focus {
+    color: #fff; /* Zjasnění barvy při hoveru */
+    border-bottom-color: #fff; /* Zvýraznění podtržení */
+}
+
+/* Styl pro oddělovač kontaktů */
+.contact-separator {
+    color: rgba(238, 238, 238, 0.5); /* Šedá, méně výrazná barva */
+    margin: 0 1em; /* Mezery kolem oddělovače */
+    display: inline-block; /* Aby fungovaly marginy */
+}
+
+/* Styly pro závěrečnou sekci */
+#final-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Ponecháno pro malý okraj */
+}
+
+#final-quote p {
+    font-size: clamp(1.4rem, 2.8vw + 0.8rem, 2.4rem);
+    font-weight: 300;
+    line-height: 1.8;
+    margin: 0.4em 0;
+    max-width: 90%;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    will-change: transform;
+}
