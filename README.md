@@ -30,15 +30,16 @@ _(Odkaz bude funkční po nasazení a nastavení domény)_
 
 Doporučená struktura souborů pro přehlednost:
 
-/
-|-- index.html             # Hlavní HTML soubor
-|-- style.css              # Hlavní CSS soubor (např. style.css?v=X)
-|-- script.js              # Hlavní JavaScript soubor (např. script.js?v=X)
-|-- assets/                # Složka pro média
-|   |-- video/
-|   |   |-- muz-od-more-pg-bkg.mp4  # Soubor s videem na pozadí
-|-- README.md              # Tento soubor
-|-- (.gitignore)           # Volitelně: Pro ignorování nepotřebných souborů
+
+    /
+    |-- index.html             # Hlavní HTML soubor
+    |-- style.css              # Hlavní CSS soubor (např. style.css?v=X)
+    |-- script.js              # Hlavní JavaScript soubor (např. script.js?v=X)
+    |-- assets/                # Složka pro média
+    |   |-- video/
+    |   |   |-- muz-od-more-pg-bkg.mp4  # Soubor s videem na pozadí
+    |-- README.md              # Tento soubor
+    |-- (.gitignore)           # Volitelně: Pro ignorování nepotřebných souborů
 
 
 **Poznámka:** Pokud jste video umístili do `assets/video/`, ujistěte se, že cesta v atributu `src` elementu `<video>` v `index.html` je správně upravena (`src="assets/video/muz-od-more-pg-bkg.mp4"`).
