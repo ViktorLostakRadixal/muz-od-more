@@ -8,7 +8,7 @@ Webová stránka využívá celoobrazovkové video pozadí, sekvenční animaci 
 
 ## Live Demo
 
-[http://muz-od-more.cz](http://muz-od-more.cz)
+[https://muz-od-more.cz](https://muz-od-more.cz)
 
 _(Odkaz bude funkční po nasazení a nastavení domény)_
 
