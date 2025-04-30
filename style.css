@@ -238,6 +238,26 @@ section {
         font-size: clamp(1rem, 1.5vw + 0.7rem, 1.3rem);
     }
 
+    .content-section a {
+        color: #fff; /* Bílá barva pro lepší kontrast */
+        text-decoration: none; /* Odstranění výchozího podtržení */
+        font-weight: 500; /* Mírně tučnější než běžný text (pokud běžný text je 300/400) */
+        /* Volitelně: Jemné podtržení pro naznačení odkazu */
+        border-bottom: 1px dotted rgba(255, 255, 255, 0.6); /* Tečkované, poloprůhledné */
+        transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Plynulý přechod pro hover efekt */
+        padding-bottom: 1px; /* Malý prostor pod tečkami */
+    }
+
+        .content-section a:hover,
+        .content-section a:focus {
+            color: #ccc; /* Mírně ztlumená barva při najetí/fokusu */
+            /* Volitelně: Zvýraznění podtržení při najetí */
+            border-bottom-color: rgba(255, 255, 255, 0.9); /* Tečky budou méně průhledné */
+            /* Alternativa pro hover: plné podtržení */
+            /* text-decoration: underline; */
+            /* border-bottom: none; */
+        }
+
 /* Styly pro Kurátorku/Produkci */
 .role-block {
     margin-top: 1.5em;
@@ -438,14 +458,18 @@ section {
 
         #call-for-memories .call-to-action-text a {
             color: #fff;
-            text-decoration: underline;
+            text-decoration: none; /* Odstraníme výchozí podtržení */
             font-style: normal;
-            transition: color 0.3s ease;
+            font-weight: 500; /* Stejná tloušťka jako ostatní odkazy v sekcích */
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.6); /* Stejné jemné podtržení */
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            padding-bottom: 1px;
         }
 
             #call-for-memories .call-to-action-text a:hover,
             #call-for-memories .call-to-action-text a:focus {
                 color: #ccc;
+                border-bottom-color: rgba(255, 255, 255, 0.9); /* Stejný hover efekt */
             }
 
 /* === Ostatní CSS pravidla zůstávají === */
