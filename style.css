@@ -378,3 +378,18 @@ section {
     /* pokud chceme jiné zvýraznění než výchozí tučné. */
     /* Např. color: #fcb900; (jantarová barva z theme) */
 }
+
+/* === Styly pro sekci Poděkování === */
+
+#thanks .thanks-list {
+    font-size: clamp(0.9rem, 1.3vw + 0.6rem, 1.1rem); /* Mírně menší písmo pro seznam */
+    line-height: 1.7; /* Mírně větší řádkování pro čitelnost seznamu */
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    color: rgba(238, 238, 238, 0.9); /* Mírně ztlumená barva seznamu */
+    /* max-width zdědí z .content-section p */
+}
+
+#thanks p:last-of-type {
+    margin-top: 1.5em; /* Odsazení posledního odstavce */
+}
