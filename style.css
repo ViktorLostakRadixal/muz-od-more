@@ -319,3 +319,62 @@ section {
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         will-change: transform;
     }
+
+/* === Styly pro sekci Vernisáž === */
+
+#vernissage p {
+    /* Zdědí max-width z .content-section p, což je OK */
+    margin-bottom: 1.2em; /* Mírně větší mezery mezi odstavci */
+}
+
+#vernissage .vernissage-intro {
+    font-size: clamp(1.1rem, 1.5vw + 0.7rem, 1.3rem); /* Mírně větší úvodní text */
+    margin-bottom: 0.5em; /* Menší mezera před datem */
+}
+
+#vernissage .vernissage-date-time {
+    font-size: clamp(1.3rem, 2vw + 0.8rem, 1.8rem); /* Výraznější datum a čas */
+    font-family: 'Cinzel', serif; /* Můžeme použít font titulku */
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.4;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em; /* Větší mezera za datem */
+    letter-spacing: 1px;
+}
+
+#vernissage .invitation-download {
+    margin: 2.5em auto; /* Větší odsazení pro tlačítko/odkaz */
+}
+
+#vernissage .download-link {
+    display: inline-block; /* Aby fungoval padding a margin */
+    background-color: rgba(255, 255, 255, 0.15); /* Lehké pozadí */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Rámeček */
+    color: #fff; /* Bílá barva textu */
+    padding: 0.8em 1.5em; /* Vnitřní odsazení */
+    border-radius: 5px; /* Zakulacené rohy */
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    font-size: clamp(1rem, 1.5vw + 0.6rem, 1.2rem);
+}
+
+    #vernissage .download-link:hover,
+    #vernissage .download-link:focus {
+        background-color: rgba(255, 255, 255, 0.3); /* Světlejší pozadí při hoveru */
+        border-color: #fff;
+        color: #fff;
+    }
+
+#vernissage .invitation-share {
+    font-size: clamp(0.9rem, 1.2vw + 0.5rem, 1.1rem); /* O něco menší text výzvy */
+    color: rgba(238, 238, 238, 0.85); /* Mírně ztlumená barva */
+    margin-top: 2em;
+}
+
+#vernissage strong {
+    /* Můžeme zde definovat specifický styl pro strong tagy v této sekci, */
+    /* pokud chceme jiné zvýraznění než výchozí tučné. */
+    /* Např. color: #fcb900; (jantarová barva z theme) */
+}
