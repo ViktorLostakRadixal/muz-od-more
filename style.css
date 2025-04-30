@@ -393,3 +393,59 @@ section {
 #thanks p:last-of-type {
     margin-top: 1.5em; /* Odsazení posledního odstavce */
 }
+
+/* === PŘIDEJTE NEBO OBNOVTE STYLY PRO SAMOSTATNOU SEKCI #call-for-memories === */
+
+#call-for-memories {
+    /* Můžeme ji trochu odlišit, např. menším paddingem nebo jiným pozadím */
+    background-color: rgba(25, 25, 25, 0.8); /* Trochu jiný odstín tmavé */
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    /* Zrušíme zděděnou minimální výšku */
+    min-height: auto !important;
+}
+
+    #call-for-memories h2 {
+        /* Styl pro volitelný nadpis */
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.5rem, 3vw + 0.8rem, 2.5rem);
+        font-weight: 500;
+        margin-bottom: 1.5em;
+        margin-top: 0;
+        color: #ddd;
+    }
+
+    #call-for-memories .call-to-action-text {
+        font-style: italic; /* Kurzíva dle přání */
+        font-size: clamp(1rem, 1.6vw + 0.6rem, 1.4rem);
+        line-height: 1.7;
+        color: #eee;
+        max-width: 700px; /* Omezení šířky */
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5em; /* Mezera mezi odstavci */
+    }
+
+        #call-for-memories .call-to-action-text:last-of-type {
+            margin-bottom: 0;
+        }
+
+        #call-for-memories .call-to-action-text strong {
+            font-style: normal;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        #call-for-memories .call-to-action-text a {
+            color: #fff;
+            text-decoration: underline;
+            font-style: normal;
+            transition: color 0.3s ease;
+        }
+
+            #call-for-memories .call-to-action-text a:hover,
+            #call-for-memories .call-to-action-text a:focus {
+                color: #ccc;
+            }
+
+/* === Ostatní CSS pravidla zůstávají === */
