@@ -29,9 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (imageBackgroundElement && !imageBackgroundElement.classList.contains('visible')) {
                 imageBackgroundElement.classList.add('visible');
             }
-            if (imagePanDulakElement && !imagePanDulakElement.classList.contains('visible')) {
-                imagePanDulakElement.classList.add('visible');
-            }
             setupTextContentAnimation();
         });
 
@@ -41,10 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (imageBackgroundElement) {
                 console.log("Hiding image background for #content.");
                 imageBackgroundElement.classList.remove('visible'); // Skryjeme obrázek
-            }
-            if (imagePanDulakElement) {
-                console.log("Hiding image #pan-dulak.");
-                imagePanDulakElement.classList.remove('visible'); // Skryjeme obrázek
             }
             // Krátká prodleva před spuštěním animace textu po startu videa
             // Spouštíme animaci jen jednou, při prvním 'playing' eventu
@@ -64,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 imageBackgroundElement.classList.add('visible'); // Znovu zobrazíme obrázek
             }
             if (imagePanDulakElement) {
-                console.log("Showing image background for #content again.");
-                imagePanDulakElement.classList.add('visible'); // Znovu zobrazíme obrázek
+                console.log("Hiding image #pan-dulak.");
+                imagePanDulakElement.classList.remove('visible'); // Skryjeme obrázek
             }
         });
         // === Konec nového listeneru ===
@@ -78,8 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (imageBackgroundElement && !imageBackgroundElement.classList.contains('visible')) {
                 imageBackgroundElement.classList.add('visible');
             }
-            if (imagePanDulakElement && !imagePanDulakElement.classList.contains('visible')) {
-                imagePanDulakElement.classList.add('visible');
+            if (imagePanDulakElement) {
+                console.log("Hiding image #pan-dulak.");
+                imagePanDulakElement.classList.remove('visible'); // Skryjeme obrázek
             }
             setupTextContentAnimation(); // Spustíme animaci textu
         });
@@ -109,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const titleDelay = authorDelay + 2500;
         const exhibitorsDelay = titleDelay + 2000;
         const locationDelay = exhibitorsDelay + 1500;
+        const panDulakDelay = locationDelay + 1000;
 
         setTimeout(() => {
             if (authorElement) authorElement.classList.add('visible');
@@ -129,6 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (locationDateElement) locationDateElement.classList.add('visible');
             console.log("Showing location/date");
         }, locationDelay);
+
+        setTimeout(() => {
+            if (imagePanDulakElement) imagePanDulakElement.classList.add('visible');
+            console.log("Showing location/date");
+        }, panDulakDelay);
     }
 
 }); // Konec DOMContentLoaded
