@@ -314,7 +314,7 @@ section {
     }
 
 #pan-dulak {
-    margin-top: 5em;
+    margin-top: 1em;
     opacity: 1;
     transition: opacity 3s ease-in-out;
 }
