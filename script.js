@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Nastavení textu
         if (authorElement) authorElement.textContent = "Jana Písaříková";
         if (titleElement) titleElement.textContent = "Muž od\u00A0moře";
-        if (exhibitorsElement) exhibitorsElement.textContent = "Kamila Brůčková, Jakub Hvězda, Eva Jaroňová, Tereza Darmovzalová, Frída Kakao, Kateřina Olivová, Hana Svobodová, Libor Veselý";
+        if (exhibitorsElement) exhibitorsElement.textContent = "Kamila&nbsp;Brůčková, Jakub&nbsp;Hvězda, Eva&nbsp;Jaroňová, Tereza&nbsp;Darmovzalová, Frída&nbsp;Kakao, Kateřina&nbsp;Olivová, Hana&nbsp;Svobodová, Libor&nbsp;Veselý";
         if (locationDateElement) locationDateElement.textContent = "Kreativum Teletník 31.\u00A05.\u00A0-\u00A031.\u00A012.\u00A02025";
 
         // 2. Sekvenční zobrazení s časovači
