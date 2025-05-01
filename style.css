@@ -313,6 +313,16 @@ section {
         border-bottom-color: #fff; /* Zvýraznění podtržení */
     }
 
+#pan-dulak {
+    margin-top: 5em;
+    opacity: 1;
+    transition: opacity 3s ease-in-out;
+}
+
+#pan-dulak.visible {
+    opacity: 0;
+}
+
 /* Styl pro oddělovač kontaktů */
 .contact-separator {
     color: rgba(238, 238, 238, 0.5); /* Šedá, méně výrazná barva */

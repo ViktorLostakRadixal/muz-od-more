@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Elementy ---
     const videoElement = document.getElementById('video');
     const imageBackgroundElement = document.querySelector('#content #image-background');
+    const imagePanDulakElement = document.querySelector('#pan-dulak');
     const authorElement = document.getElementById('author');
     const titleElement = document.getElementById('title');
     const exhibitorsElement = document.getElementById('exhibitors');
@@ -28,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (imageBackgroundElement && !imageBackgroundElement.classList.contains('visible')) {
                 imageBackgroundElement.classList.add('visible');
             }
+            if (imagePanDulakElement && !imagePanDulakElement.classList.contains('visible')) {
+                imagePanDulakElement.classList.add('visible');
+            }
             setupTextContentAnimation();
         });
 
@@ -37,6 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (imageBackgroundElement) {
                 console.log("Hiding image background for #content.");
                 imageBackgroundElement.classList.remove('visible'); // Skryjeme obrázek
+            }
+            if (imagePanDulakElement) {
+                console.log("Hiding image #pan-dulak.");
+                imagePanDulakElement.classList.remove('visible'); // Skryjeme obrázek
             }
             // Krátká prodleva před spuštěním animace textu po startu videa
             // Spouštíme animaci jen jednou, při prvním 'playing' eventu
@@ -55,6 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Showing image background for #content again.");
                 imageBackgroundElement.classList.add('visible'); // Znovu zobrazíme obrázek
             }
+            if (imagePanDulakElement) {
+                console.log("Showing image background for #content again.");
+                imagePanDulakElement.classList.add('visible'); // Znovu zobrazíme obrázek
+            }
         });
         // === Konec nového listeneru ===
 
@@ -65,6 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Zajistíme, aby i při selhání autoplay byl obrázek vidět
             if (imageBackgroundElement && !imageBackgroundElement.classList.contains('visible')) {
                 imageBackgroundElement.classList.add('visible');
+            }
+            if (imagePanDulakElement && !imagePanDulakElement.classList.contains('visible')) {
+                imagePanDulakElement.classList.add('visible');
             }
             setupTextContentAnimation(); // Spustíme animaci textu
         });
