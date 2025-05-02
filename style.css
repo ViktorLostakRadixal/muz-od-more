@@ -67,7 +67,7 @@ section {
     transform: translateX(-50%); /* Posuneme o polovinu šířky doleva, aby bylo vystředěné */
     width: 100vw; /* Šířka viewportu */
     height: 100%;
-    background-image: url('assets/img/IMG_20250426_152333.jpg'); /* <<< DOPLŇ CESTU K OBRÁZKU */
+    background-image: url('assets/img/IMG_20250502_203902.jpg'); /* <<< DOPLŇ CESTU K OBRÁZKU */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
