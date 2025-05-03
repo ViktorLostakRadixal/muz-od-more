@@ -131,4 +131,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, panDulakDelay);
     }
 
+    // ===== OBSLUHA TLAČÍTKA "NEMAJÍ WEB" =====
+    const chmatowButton = document.getElementById('chmatow-web-button');
+
+    if (chmatowButton) {
+        chmatowButton.addEventListener('click', () => {
+            // Zobrazí jednoduché alert okno
+            alert('Fakt nemají web...');
+            // Alternativa: Můžete vytvořit malý textový element a zobrazit/skrýt ho
+            // např. pod tlačítkem, pokud nechcete používat alert.
+        });
+    } else {
+        console.log("Button #chmatow-web-button not found."); // Log pro případ chyby
+    }
+    // ========================================
+
 }); // Konec DOMContentLoaded

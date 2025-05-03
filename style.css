@@ -582,3 +582,103 @@ section {
             border-color: #fff;
             transform: scale(1.03);
         }
+
+.chmatow-style {
+    /* Jiný gradient a obrázek pro odlišení */
+    /* !! Nahraďte URL obrázku !! - vyberte něco tématického (stará omítka, tmavý les...) */
+    background: linear-gradient(rgba(40, 40, 40, 0.8), rgba(10, 10, 10, 0.9)), url('assets/img/chmatow-background.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Opět bez 'fixed' pro mobily */
+    /* Výška může být menší než u Cafe, nebo auto podle obsahu + padding */
+    min-height: 65vh; /* Raději min-height */
+    height: auto; /* Výška se přizpůsobí obsahu */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh 5vw;
+    color: #ddd; /* Mírně tlumenější bílá? */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+    .chmatow-style .card-content-wrapper {
+        max-width: 600px; /* Omezíme šířku textu */
+    }
+
+    .chmatow-style .chmatow-title {
+        font-family: "Creepster", cursive; /* <<< POUŽIT FONT Creepster */
+        font-weight: 400; /* Tento font má jen jednu tloušťku */
+        font-size: clamp(3rem, 8vw + 1rem, 6rem); /* Velké písmo */
+        color: #c00; /* Temně rudá? Nebo #9a9a9a; - zašlá šedá? */
+        text-shadow: 1px 1px 2px black, 0 0 5px darkred; /* Efekt stínu/záře */
+        margin: 0 0 0.5em 0;
+        line-height: 1.1;
+        letter-spacing: 2px; /* Roztažení písmen */
+    }
+
+    .chmatow-style .chmatow-description {
+        font-family: 'Cormorant Garamond', serif; /* Váš font */
+        font-size: clamp(1rem, 1.5vw + 0.6rem, 1.2rem);
+        color: #ccc; /* Světle šedá */
+        margin-bottom: 1em;
+        line-height: 1.6;
+        font-style: italic; /* Můžeme přidat kurzívu pro styl */
+    }
+
+    .chmatow-style .chmatow-hours {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(0.9rem, 1.3vw + 0.5rem, 1.1rem); /* Menší písmo */
+        color: #aaa; /* Ještě více tlumená šedá */
+        margin-bottom: 2em;
+        line-height: 1.5;
+    }
+
+    /* ===== STYL PRO LOKACI A MAPU KARTY ===== */
+    .chmatow-style .chmatow-location {
+        font-family: 'Cormorant Garamond', serif; /* Váš font */
+        font-size: clamp(0.9rem, 1.3vw + 0.5rem, 1.1rem); /* Menší písmo */
+        color: #bbb; /* Světlejší šedá */
+        margin-top: 1.5em; /* Odsazení od hodin */
+        margin-bottom: 2em; /* Odsazení před tlačítkem */
+        line-height: 1.5;
+    }
+
+        .chmatow-style .chmatow-location a {
+            /* Použijeme styl podobný ostatním odkazům v .content-section */
+            color: #ddd; /* Barva odkazu */
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted rgba(221, 221, 221, 0.6);
+            padding-bottom: 1px;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+
+            .chmatow-style .chmatow-location a:hover,
+            .chmatow-style .chmatow-location a:focus {
+                color: #fff;
+                border-bottom-color: #fff;
+            }
+    /* ======================================= */
+
+    .chmatow-style .chmatow-link {
+        display: inline-block;
+        color: #aaa; /* Šedá barva */
+        background-color: transparent; /* Bez pozadí */
+        border: 1px solid #555; /* Tmavě šedý rámeček */
+        padding: 0.6em 1.2em;
+        border-radius: 3px; /* Méně zakulacené */
+        text-decoration: none;
+        font-weight: 400; /* Normální tloušťka */
+        font-family: "Poppins", sans-serif; /* Můžeme použít Poppins */
+        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        font-size: clamp(0.9rem, 1.3vw + 0.5rem, 1.1rem);
+        cursor: pointer; /* Ukazatel ruky pro tlačítko */
+    }
+
+        .chmatow-style .chmatow-link:hover,
+        .chmatow-style .chmatow-link:focus {
+            background-color: rgba(85, 85, 85, 0.2); /* Lehké pozadí při hoveru */
+            border-color: #888;
+            color: #ccc;
+        }
