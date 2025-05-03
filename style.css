@@ -477,4 +477,108 @@ section {
                 border-bottom-color: rgba(255, 255, 255, 0.9); /* Stejný hover efekt */
             }
 
-/* === Ostatní CSS pravidla zůstávají === */
+#surroundings {
+    padding-top: 8vh;
+    padding-bottom: 8vh;
+}
+
+    #surroundings h2 {
+        /* Styl pro hlavní nadpis sekce "V okolí..." */
+        font-family: 'Cinzel', serif;
+        font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
+        font-weight: 600;
+        margin-bottom: 1.5em;
+        color: #fff;
+    }
+
+.recommendation-card {
+    margin-bottom: 4vh; /* Mezera mezi kartami */
+    border-radius: 8px; /* Zakulacené rohy karet */
+    overflow: hidden; /* Ořízne obsah podle rohů */
+    position: relative; /* Pro případné vnitřní absolutní pozicování */
+    max-width: 900px; /* Maximální šířka karty */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Specifický styl pro kartu Crash Cafe */
+.crash-cafe-style {
+    /* Převzatý styl pozadí */
+    /* !! Nahraďte URL obrázku !! */
+    background: linear-gradient(rgba(171, 100, 67, 0.75), rgba(76, 43, 27, 0.75)), url('assets/img/cafe-crash-background.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Doporučeno místo fixed */
+    min-height: auto !important; /* Přepisuje 100svh, pokud by bylo zděděno */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4vh 4vw; /* Vnitřní padding karty */
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Výraznější stín na obrázkovém pozadí */
+}
+
+    .crash-cafe-style .card-content-wrapper {
+        /* Wrapper může mít lehké pozadí pro čitelnost, ale nemusí */
+        /* background-color: rgba(0, 0, 0, 0.3); */
+        /* padding: 2em; */
+        /* border-radius: 5px; */
+    }
+
+    .crash-cafe-style .cafe-title {
+        font-family: "Passions Conflict", cursive;
+        font-weight: 400; /* Google Fonts má jen 400 */
+        font-size: clamp(4rem, 10vw + 1rem, 8rem); /* Větší, výrazný */
+        color: #fff;
+        margin: 0 0 0.2em 0;
+        line-height: 1;
+    }
+
+    .crash-cafe-style .cafe-tagline {
+        font-family: 'Cormorant Garamond', serif; /* Váš font */
+        font-size: clamp(1.3rem, 2.2vw + 0.7rem, 2rem);
+        font-weight: 500; /* Mírně výraznější */
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 1.5em;
+        line-height: 1.4;
+    }
+
+    .crash-cafe-style .cafe-location {
+        font-family: 'Cormorant Garamond', serif; /* Váš hlavní font */
+        font-size: clamp(1rem, 1.5vw + 0.6rem, 1.2rem); /* Podobná velikost jako popis */
+        font-weight: 400; /* Normální tloušťka */
+        color: rgba(255, 255, 255, 0.9); /* Lehce ztlumená bílá */
+        margin-top: -0.5em; /* Přisunutí blíže k tagline */
+        margin-bottom: 1.5em; /* Odsazení před popisem */
+        line-height: 1.4;
+    }
+
+    .crash-cafe-style .cafe-description {
+        font-family: 'Cormorant Garamond', serif; /* Váš font */
+        font-size: clamp(1rem, 1.5vw + 0.6rem, 1.3rem);
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 2em;
+        line-height: 1.6;
+    }
+
+    .crash-cafe-style .cafe-link {
+        display: inline-block;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        padding: 0.7em 1.5em;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif; /* Font tlačítka z Crash Cafe */
+        transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+        font-size: clamp(0.9rem, 1.3vw + 0.5rem, 1.1rem);
+    }
+
+        .crash-cafe-style .cafe-link:hover,
+        .crash-cafe-style .cafe-link:focus {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-color: #fff;
+            transform: scale(1.03);
+        }
