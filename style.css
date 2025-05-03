@@ -597,7 +597,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5vh 5vw;
+    padding: 4vh 4vw;
     color: #ddd; /* Mírně tlumenější bílá? */
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
