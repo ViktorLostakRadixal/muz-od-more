@@ -26,7 +26,6 @@ section {
     z-index: -1;
     overflow: hidden;
     background-color: black; /* Fallback barva, pokud by nic nefungovalo */
-    opacity: 0.4;
 }
 
 #video-background video {
