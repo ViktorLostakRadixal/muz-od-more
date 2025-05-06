@@ -716,3 +716,40 @@ section {
         border-color: #2d4373;
         color: #fff;
     }
+
+/* === Styl pro odkaz na iniciativu/projekt u produkce === */
+.project-initiative-link {
+    font-size: 0.9em; /* Mírně menší písmo */
+    color: rgba(255, 255, 255, 0.8); /* Světlejší barva pro menší dominanci */
+    margin-top: 0.75em; /* Odsazení shora */
+    line-height: 1.5; /* Lepší čitelnost */
+    max-width: 100%; /* Aby se přizpůsobilo šířce .role-block */
+}
+
+    .project-initiative-link a {
+        color: rgba(255, 255, 255, 0.9); /* Barva odkazu, aby byla dobře viditelná */
+        font-weight: 500; /* Může být stejné jako ostatní odkazy, nebo mírně méně výrazné */
+        /* Použijeme styl odkazu, který už máte definovaný v .content-section a pro ostatní odkazy */
+        /* Pokud chcete specifický styl pro tento odkaz, můžete ho zde definovat, např.: */
+        /* text-decoration: none; */
+        /* border-bottom: 1px dotted rgba(255, 255, 255, 0.6); */
+        /* padding-bottom: 1px; */
+        /* transition: color 0.3s ease, border-bottom-color 0.3s ease; */
+    }
+
+        /* Pokud chcete, aby se odkaz choval stejně jako ostatní odkazy v .content-section: */
+        .project-initiative-link a,
+        .project-initiative-link a:visited { /* Přidáno :visited pro konzistenci */
+            color: #fff; /* Nebo barva definovaná pro .content-section a */
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.6);
+            padding-bottom: 1px;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+
+            .project-initiative-link a:hover,
+            .project-initiative-link a:focus {
+                color: #ccc; /* Nebo barva definovaná pro .content-section a:hover */
+                border-bottom-color: rgba(255, 255, 255, 0.9);
+            }
