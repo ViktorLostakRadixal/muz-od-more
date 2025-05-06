@@ -79,7 +79,7 @@ section {
 }
 
     #image-background.visible {
-        opacity: 1;
+        opacity: 0.4;
     }
 
 /* Styly pro textový obsah v úvodní sekci */
