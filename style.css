@@ -26,6 +26,7 @@ section {
     z-index: -1;
     overflow: hidden;
     background-color: black; /* Fallback barva, pokud by nic nefungovalo */
+    opacity: 0.4;
 }
 
 #video-background video {
@@ -682,3 +683,36 @@ section {
             border-color: #888;
             color: #ccc;
         }
+
+/* === Styly pro odkazy na sociální sítě v patičce === */
+#contact .social-links {
+    margin-top: 1.5em; /* Větší odsazení shora */
+    font-size: clamp(1rem, 1.5vw + 0.6rem, 1.2rem); /* Podobná velikost jako ostatní kontakty */
+}
+
+    #contact .social-links a {
+        /* Můžete zdědit styl z .content-section a nebo specificky upravit */
+        /* např. barvu nebo border-bottom, pokud chcete odlišit */
+    }
+
+/* === Styly pro tlačítko FB události === */
+#vernissage .fb-event-link { /* Nová třída pro FB odkaz */
+    display: inline-block;
+    background-color: #3b5998; /* Facebook modrá */
+    border: 1px solid #3b5998;
+    color: #fff;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    font-size: clamp(1rem, 1.5vw + 0.6rem, 1.2rem);
+    margin-top: 1em; /* Odsazení od předchozího tlačítka */
+}
+
+    #vernissage .fb-event-link:hover,
+    #vernissage .fb-event-link:focus {
+        background-color: #2d4373; /* Tmavší FB modrá */
+        border-color: #2d4373;
+        color: #fff;
+    }
