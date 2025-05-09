@@ -423,8 +423,11 @@ section {
     margin-top: 1.5em; /* Odsazení posledního odstavce */
 }
 
-/* === PŘIDEJTE NEBO OBNOVTE STYLY PRO SAMOSTATNOU SEKCI #call-for-memories === */
+#thanks .partner-logo {
+    max-width: 14em;
+}
 
+/* === PŘIDEJTE NEBO OBNOVTE STYLY PRO SAMOSTATNOU SEKCI #call-for-memories === */
 #call-for-memories {
     /* Můžeme ji trochu odlišit, např. menším paddingem nebo jiným pozadím */
     background-color: rgba(25, 25, 25, 0.8); /* Trochu jiný odstín tmavé */
