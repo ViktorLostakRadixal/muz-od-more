@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Návrh Pozvánky - Muž od moře (Na šířku)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        .flyer-dl-landscape {
+            width: 795px; /* Approx 210mm */
+            height: 375px; /* Approx 99mm */
+            margin: 20px auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+        }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        .chocho-title-font {
+            font-family: 'Cinzel', serif;
+            font-weight: 700; /* Default to bold, can be overridden */
+        }
+        .body-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .dark-theme {
+            background-color: #0f0f0f; /* Tmavé pozadí jako na webu */
+            color: #e0e0e0; /* Světlý text */
+        }
+        .dark-theme-text-dim {
+            color: #a0a0a0; /* Mírně tlumený text na tmavém pozadí */
+        }
+        .qr-code-placeholder svg {
+            width: 100px; /* Větší QR kód */
+            height: 100px;
+            fill: currentColor;
+        }
+        .qr-code-placeholder img {
+            max-width: 30%;
+            margin: 0 auto;
+        }
+        .text-xxs {
+            font-size: 0.65rem;
+            line-height: 1rem;
+        }
+        .icon-247 {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+        }
+        .brand-blue-text { /* Barva pro webovou adresu, inspirováno modrou z webu */
+            color: #5DADE2; /* Příklad modré, upravte dle přesné barvy z webu */
+        }
+    </style>
+</head>
+<body class="bg-gray-200 p-4 md:p-8">
+
+    <h1 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6 chocho-title-font">Náhled pozvánky (DL na šířku)</h1>
+
+    <div class="flex flex-col items-center">
+
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold text-center text-gray-700 mb-3 body-font">Přední strana</h2>
+            <div class="flyer-dl-landscape dark-theme items-center justify-center p-8 relative">
+                <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('assets/img/IMG_20250513_181025-low-key.jpg'); opacity: 0.8;">
+                </div>
+
+                <div class="relative z-10 text-center w-full flex flex-col justify-center items-center h-full">
+                    <h3 class="text-7xl chocho-title-font font-black leading-none">MUŽ OD MOŘE</h3>
+                    <p class="text-xl body-font mt-3 dark-theme-text-dim">Příběh, který smrtí neskončil.</p>
+                    
+                    <div class="mt-8 flex items-center justify-center body-font text-lg">
+                        <svg class="icon-247 fill-current text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586V7zM7.414 17.414l-1.828-1.828L6.293 15l1.121.121L7.414 17.414zM16.586 17.414l2.293-2.293.707.707-1.828 1.828-1.172-.242zM12 4.5c-.276 0-.5.224-.5.5v1c0 .276.224.5.5.5s.5-.224.5-.5v-1c0-.276-.224-.5-.5-.5zM12 17.5c-.276 0-.5.224-.5.5v1c0 .276.224.5.5.5s.5-.224.5-.5v-1c0-.276-.224-.5-.5-.5zM5.938 7.767l-.707-.707-1.414 1.414.707.707c.195.195.451.293.707.293s.512-.098.707-.293c.391-.391.391-1.023 0-1.414zM18.062 7.767c.391-.391.391-1.023 0-1.414l-.707-.707-1.414 1.414.707.707c.195.195.451.293.707.293s.512-.098.707-.293z"/></svg>
+                        <span>Výstava v bývalém teletníku. Otevřeno 24/7.</span>
+                    </div>
+                    <p class="text-2xl mt-4 chocho-title-font brand-blue-text font-normal tracking-wider">muz-od-more.cz</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-xl font-semibold text-center text-gray-700 mb-3 body-font">Zadní strana</h2>
+            <div class="flyer-dl-landscape bg-gray-50 p-6 text-gray-800 flex flex-row items-stretch">
+                <div class="w-3/5 pr-5 flex flex-col body-font text-xs leading-relaxed">
+                    <h3 class="text-2xl chocho-title-font mb-3 text-gray-900">Objevte Muže od moře</h3>
+                    <p class="mb-2 text-sm">
+                        Adrián 'Chocho' Sitta. Blogger, nomád, neklidný duch. Jeho cesty ho zavedly až na konec světa, ale jeho příběh pokračuje i po jeho tragické smrti.
+                    </p>
+                    <p class="mb-3 text-sm">
+                        Navštivte unikátní výstavu v bývalém teletníku v Runářově, otevřenou pro vás kdykoliv – ve dne, v noci. Čeká na vás umění, autentické vzpomínky a atmosféra místa, kde si můžete v klidu uvařit kávu či čaj a ponořit se do světa, který se vymyká všednosti.
+                    </p>
+                    
+                    <div class="mt-auto space-y-1 text-xxs dark-theme-text-dim">
+                        <p><span class="font-semibold text-gray-700">Vystavující:</span> T. Darmovzalová, L. Veselý, K. Olivová, F. Kakao, H. Svobodová, J. Hvězda, E. Jaroňová, K. Brůčková, Cestovní kancelář Avatára CHOCHO (AI) & A. Chocho Sitta.</p>
+                        <p><span class="font-semibold text-gray-700">Kurátorka:</span> Jana Písaříková</p>
+                        <p><span class="font-semibold text-gray-700">Synergie & Podpora:</span> TAECAR (<span class="italic">Transcendence Archive | European Conceptual Art Repository</span>)</p>
+                    </div>
+                </div>
+                <div class="w-2/5 pl-5 border-l border-gray-300 flex flex-col justify-between items-center text-center">
+                    <div>
+                        <p class="body-font font-semibold mb-1 text-sm text-gray-900">KDE:</p>
+                        <p class="body-font text-xs mb-2">Kreativum Teletník, Runářov u Konice</p>
+                        
+                        <p class="body-font font-semibold mb-1 text-sm text-gray-900">OTEVŘENO:</p>
+                        <p class="body-font text-xs mb-3">NONSTOP 24/7<br>(31.5. – 31.12.2025)</p>
+                    </div>
+                    
+                    <div class="my-2">
+                        <p class="body-font font-bold mb-1 text-sm text-indigo-700">VSTUP & INFO:</p>
+                        <div class="qr-code-placeholder my-1 text-gray-800">
+                            <img src="assets/img/qrcode.svg" /> 
+                        </div>
+                        <p class="chocho-title-font text-xl font-black brand-blue-text tracking-wider">muz-od-more.cz</p>
+                    </div>
+                    
+                    <div class="mt-2">
+                        <p class="body-font font-semibold text-sm text-gray-900">KONTAKT:</p>
+                        <p class="body-font text-xs text-gray-600">teletnik@avirtu.net</p>
+                        <p class="body-font text-xs text-gray-600">+420 604 761 154</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-10 text-sm text-gray-600 body-font">
+        <p>Toto je pouze vizuální návrh. Pro tisk bude potřeba finální grafické zpracování.</p>
+        <p>Rozměry DL letáku na šířku jsou přibližně 210mm x 99mm.</p>
+    </div>
+
+</body>
+</html>
