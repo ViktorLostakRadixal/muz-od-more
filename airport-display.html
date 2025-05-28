@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dublin Airport Monitor Simulation (Chocho Edition)</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevent body scrollbars */
+        }
+
+        body {
+            background-color: #003366;
+            color: #E0E0E0;
+            font-family: 'Consolas', 'Menlo', 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #FFCC00;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 2.0em; /* Slightly smaller for more screen space */
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #FFCC00;
+            flex-shrink: 0;
+        }
+
+        .clock {
+            font-size: 1.5em; /* Slightly smaller */
+            color: #FFCC00;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 3px #FFCC00;
+            flex-shrink: 0;
+        }
+
+        .monitor-container {
+            width: 95%;
+            max-width: 1100px;
+            background-color: #002244;
+            border: 3px solid #004477;
+            border-radius: 10px;
+            padding: 10px; /* Reduced padding */
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            overflow-y: auto; /* Scrollbar if content overflows */
+            flex-grow: 1; /* Takes available vertical space */
+            min-height: 0; /* Important for flex item with overflow */
+            margin-bottom: 10px; /* Space before ticker */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px 10px; /* Adjusted padding */
+            text-align: left;
+            border-bottom: 1px solid #004060;
+            font-size: 1.0em; /* Adjusted font size */
+        }
+
+        th {
+            color: #FFCC00;
+            text-transform: uppercase;
+            font-size: 1.1em;
+            position: sticky; /* Make headers sticky */
+            top: 0;
+            background-color: #002244; /* Match container background */
+            z-index: 1;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr.flight-row:hover {
+            background-color: #003355;
+        }
+
+        .status {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-ontime { color: #32CD32; }
+        .status-delayed { color: #FF4500; }
+        .status-boarding { color: #1E90FF; }
+        .status-gate-open { color: #FFD700; }
+        .status-cancelled { color: #DC143C; text-decoration: line-through;}
+        .status-departed { color: #A9A9A9; }
+        .status-landed { color: #20B2AA; }
+        .status-expected { color: #FFA500; }
+        .status-diverted { color: #DA70D6; }
+        .status-see-agent { color: #FF6347; }
+
+        .chocho-glitch {
+            color: #FF69B4;
+            font-style: italic;
+            animation: chocho-text-flicker 0.3s infinite alternate;
+        }
+
+        @keyframes chocho-text-flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .flight-number {
+            font-weight: bold;
+            color: #FFCC00;
+        }
+
+        .time {
+            font-family: 'Lucida Console', Monaco, monospace;
+        }
+
+        .destination, .origin {
+            text-transform: uppercase;
+        }
+
+        .scrolling-text-container {
+            width: 95%;
+            max-width: 1100px;
+            background-color: #001a33;
+            color: #FFCC00;
+            padding: 8px 0; /* Adjusted padding */
+            overflow: hidden;
+            white-space: nowrap;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .scrolling-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-left 35s linear infinite;
+            font-size: 1.05em; /* Adjusted font size */
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-250%); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .clock { font-size: 1.3em; }
+            th, td { font-size: 0.9em; padding: 6px 8px; }
+            .scrolling-text { font-size: 0.95em; animation-duration: 28s; }
+            .optional-column { display: none; }
+        }
+         @media (max-width: 480px) {
+            h1 { font-size: 1.5em; }
+            .clock { font-size: 1.1em; }
+            th, td { font-size: 0.8em; padding: 5px; }
+            .scrolling-text { font-size: 0.9em; animation-duration: 22s; }
+            .airline-column { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Departures / Arrivals</h1>
+    <div class="clock" id="clock">00:00:00</div>
+
+    <div class="monitor-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Flight</th>
+                    <th>Destination/Origin</th>
+                    <th class="airline-column">Airline</th>
+                    <th>Terminal</th>
+                    <th>Gate</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="flight-data">
+                </tbody>
+        </table>
+    </div>
+
+    <div class="scrolling-text-container">
+        <div class="scrolling-text" id="scrolling-text">
+            </div>
+    </div>
+
+    <script>
+        const flightDataBody = document.getElementById('flight-data');
+        const clockElement = document.getElementById('clock');
+        const scrollingTextElement = document.getElementById('scrolling-text');
+
+        const destinations = [
+            "LONDON LHR", "PARIS CDG", "NEW YORK JFK", "AMSTERDAM AMS", "BERLIN SXF", "ROME FCO",
+            "MADRID BJS", "FRANKFURT FRA", "MANCHESTER MAN", "EDINBURGH EDI", "BRISTOL BRS",
+            "BOSTON BOS", "CHICAGO ORD", "TORONTO YYZ", "LISBON LIS", "BARCELONA BCN", "BRUSSELS BRU",
+            "COPENHAGEN CPH", "OSLO OSL", "STOCKHOLM ARN", "WARSAW WAW", "KRAKOW KRK", "ZURICH ZRH"
+        ];
+        const airlines = [
+            "Emerald Air", "Celtic Wings", "Shamrock Jet", "Irish Skyways", "Atlantic Connect",
+            "Dublin Direct", "Gaelic Flights", "Capital Air", "EuroLink", "CityHopper", "Starlight Air"
+        ];
+        const statuses = [
+            { text: "ON TIME", class: "status-ontime" },
+            { text: "DELAYED", class: "status-delayed" },
+            { text: "BOARDING", class: "status-boarding" },
+            { text: "GATE OPEN", class: "status-gate-open" },
+            { text: "CANCELLED", class: "status-cancelled" },
+            { text: "DEPARTED", class: "status-departed" },
+            { text: "LANDED", class: "status-landed" },
+            { text: "EXPECTED", class: "status-expected" },
+            { text: "DIVERTED", class: "status-diverted" },
+            { text: "SEE AGENT", class: "status-see-agent" }
+        ];
+
+        const chochoSayingsForTable = [ // Renamed to avoid confusion
+            "Lost luggage? On a better holiday than you.",
+            "This flight is as real as your resolutions.",
+            "Universe is indifferent to your travel plans.",
+            "Why fly when you can question existence?",
+            "Existential dread at Gate B12. Enjoy.",
+            "Is this a departure or an escape?",
+            "Destination: Oblivion. And maybe Cork.",
+            "Searching for meaning? Try lost & found.",
+            "All flights are metaphorical journeys.",
+            "Boarding pass to nowhere printing now.",
+            "Delayed? So is enlightenment.",
+            "On time? For what, exactly?",
+            "This screen is lying. Or is it?",
+            "Enjoy your simulated journey.",
+            "Simulation running smoothly. Mostly."
+        ];
+
+        const initialWelcomeMessage = "Welcome to Dublin Airport. Please mind the gap... between reality and your expectations. Bags left unattended will be sold on eBay. Free Wi-Fi available, password is 'password123'. Don't forget to forget your troubles.";
+
+        const dynamicTickerMessages = [
+            initialWelcomeMessage,
+            "Dublin Weather: Currently grey. Forecast: Also grey. With a 100% chance of introspection.",
+            "It's raining. Obviously. This is Ireland. Enjoy the authentic experience.",
+            "Windy today. Hold onto your hats, dreams, and existential crises.",
+            "This airport is a metaphor for something. Probably just a poorly organized bus station with wings.",
+            "If you see something, say something. Or don't. The universe is vast and largely disinterested.",
+            "The meaning of life is not displayed on this screen. Try looking out the window, or in a pint of Guinness.",
+            "All unattended existential angst will be confiscated and used for performance art.",
+            "Lost: One sense of purpose, slightly used. If found, please keep it, I've got spares.",
+            "Found: A map to a place where socks go when they disappear from the dryer. Owner can claim at Gate of No Return.",
+            "Passenger 'Godot' is kindly requested to stop waiting. He's not coming. Try the pub instead.",
+            "Will the owner of a Schrödinger's cat, last seen both enjoying and not enjoying its flight, please report to... well, figure it out.",
+            "Flight ZYX987 to 'The Void' is now boarding. One way only. No carry-on existential baggage.",
+            "Please be aware: The laws of physics are merely suggestions in Terminal 2. Gravity is optional on Tuesdays.",
+            "For your comfort, oxygen masks will not drop. Breathe deep the absurdity. It's free.",
+            "The time is an illusion. Lunchtime doubly so. Especially if you're waiting for that delayed flight.",
+            "Current specials at 'The Wandering Spud': Regret Fries and a pint of Ambivalence.",
+            "Attention: The flight to 'Common Sense' has been indefinitely delayed due to unforeseen circumstances.",
+            "Remember to declare all your hopes and dreams at customs. They will be taxed heavily.",
+            "This is a public service announcement: You are doing great. Or not. It's all relative in the grand scheme of things."
+        ];
+
+
+        const terminals = ["T1", "T2"];
+        const gates = Array.from({length: 20}, (_, i) => (Math.random() < 0.6 ? "A" : "B") + (i + 1).toString().padStart(2, '0'));
+
+        let flights = [];
+        const MAX_FLIGHTS = 10; // Max flights to display, can be more than fits to test scroll
+
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateFlightNumber() {
+            const prefixes = ["EI", "FR", "BA", "LH", "U2", "SK", "AF", "KL", "TP", "AY"];
+            const prefix = getRandomElement(prefixes);
+            const number = Math.floor(100 + Math.random() * 899); // 100-999
+            return prefix + number;
+        }
+
+        function formatTime(date) {
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+        }
+
+        function generateRandomFlight() {
+            const now = new Date();
+            // Generate times from 2 hours ago to 5 hours in the future
+            const scheduledTime = new Date(now.getTime() + (Math.random() * 7 - 2) * 60 * 60 * 1000);
+            const isDeparture = Math.random() < 0.6;
+            let status = getRandomElement(statuses);
+
+            // More logical status assignment
+            const timeDiffMinutes = (scheduledTime.getTime() - now.getTime()) / (1000 * 60);
+
+            if (timeDiffMinutes < -30 && status.text !== "CANCELLED") { // Departed/Landed long ago
+                status = isDeparture ? statuses.find(s => s.text === "DEPARTED") : statuses.find(s => s.text === "LANDED");
+            } else if (timeDiffMinutes < 15 && timeDiffMinutes > -30 && isDeparture && status.text === "ON TIME") {
+                status = getRandomElement(statuses.filter(s => ["BOARDING", "GATE OPEN"].includes(s.text)));
+            } else if (timeDiffMinutes < 30 && timeDiffMinutes > 0 && !isDeparture && status.text === "ON TIME") {
+                 status = statuses.find(s => s.text === "EXPECTED") || status;
+            }
+             // If status is critical, gate should be ---
+            let gateDisplay = getRandomElement(gates);
+            if (["CANCELLED", "DEPARTED", "LANDED", "DIVERTED"].includes(status.text)) {
+                gateDisplay = "---";
+            }
+
+
+            return {
+                id: Date.now() + Math.random().toString(36).substr(2, 9), // More unique ID
+                time: formatTime(scheduledTime),
+                flightNumber: generateFlightNumber(),
+                destinationOrigin: getRandomElement(destinations),
+                airline: getRandomElement(airlines),
+                terminal: getRandomElement(terminals),
+                gate: gateDisplay,
+                statusInfo: status,
+                isDeparture: isDeparture,
+                scheduledDateTime: scheduledTime,
+                isChochoGlitch: false
+            };
+        }
+
+        function renderFlights() {
+            flightDataBody.innerHTML = '';
+
+            flights.sort((a, b) => a.scheduledDateTime - b.scheduledDateTime);
+
+            flights.forEach(flight => {
+                const row = document.createElement('tr');
+                row.classList.add('flight-row');
+                if (Math.random() < 0.03) {
+                    row.style.animation = 'blinkRow 0.5s 2';
+                }
+
+                let statusHtml;
+                if (flight.isChochoGlitch) {
+                    statusHtml = `<span class="status chocho-glitch">${getRandomElement(chochoSayingsForTable)}</span>`;
+                } else {
+                    statusHtml = `<span class="status ${flight.statusInfo.class}">${flight.statusInfo.text}</span>`;
+                }
+
+                row.innerHTML = `
+                    <td class="time">${flight.time}</td>
+                    <td class="flight-number">${flight.flightNumber}</td>
+                    <td class="${flight.isDeparture ? 'destination' : 'origin'}">${flight.destinationOrigin}</td>
+                    <td class="airline-column">${flight.airline}</td>
+                    <td>${flight.terminal}</td>
+                    <td>${flight.gate}</td>
+                    <td>${statusHtml}</td>
+                `;
+                flightDataBody.appendChild(row);
+            });
+        }
+
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes blinkRow {
+                0%, 100% { background-color: inherit; }
+                50% { background-color: #004070; }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        function updateFlights() {
+            flights.forEach(f => f.isChochoGlitch = false);
+
+            if (flights.length > 0 && Math.random() < 0.05) {
+                const flightIndex = Math.floor(Math.random() * flights.length);
+                if (!["CANCELLED", "DEPARTED", "LANDED"].includes(flights[flightIndex].statusInfo.text)) {
+                    flights[flightIndex].isChochoGlitch = true;
+                }
+            } else if (flights.length > 0 && Math.random() < 0.25) {
+                const flightIndex = Math.floor(Math.random() * flights.length);
+                let newStatus = getRandomElement(statuses);
+                const flight = flights[flightIndex];
+                const now = new Date();
+                const timeDiffMinutes = (flight.scheduledDateTime.getTime() - now.getTime()) / (1000 * 60);
+
+
+                if (["CANCELLED", "DEPARTED", "LANDED"].includes(flight.statusInfo.text)) {
+                    // Less likely to change these critical statuses unless it's to remove them
+                } else if (flight.statusInfo.text === "BOARDING" && flight.isDeparture && timeDiffMinutes < -5) { // Should have departed
+                    newStatus = statuses.find(s => s.text === "DEPARTED") || newStatus;
+                } else if (flight.statusInfo.text === "EXPECTED" && !flight.isDeparture && timeDiffMinutes < -5) { // Should have landed
+                    newStatus = statuses.find(s => s.text === "LANDED") || newStatus;
+                } else if (flight.statusInfo.text === "GATE OPEN" && flight.isDeparture && timeDiffMinutes < 5) { // Nearing departure
+                    newStatus = statuses.find(s => s.text === "BOARDING") || newStatus;
+                } else if (flight.statusInfo.text === "ON TIME" && timeDiffMinutes < 15 && flight.isDeparture) {
+                    newStatus = statuses.find(s => s.text === "GATE OPEN") || newStatus;
+                } else if (flight.statusInfo.text === "ON TIME" && timeDiffMinutes < 30 && !flight.isDeparture) {
+                    newStatus = statuses.find(s => s.text === "EXPECTED") || newStatus;
+                }
+
+
+                flights[flightIndex].statusInfo = newStatus;
+                if (["CANCELLED", "DEPARTED", "LANDED", "DIVERTED"].includes(newStatus.text)) {
+                    flights[flightIndex].gate = "---";
+                }
+            }
+
+            const now = new Date();
+            flights = flights.filter(flight => {
+                const flightTime = flight.scheduledDateTime;
+                // Keep departed/landed for a shorter time
+                if (flight.statusInfo.text === "DEPARTED" && now.getTime() - flightTime.getTime() > 30 * 60 * 1000) return false;
+                if (flight.statusInfo.text === "LANDED" && now.getTime() - flightTime.getTime() > 30 * 60 * 1000) return false;
+                if (flight.statusInfo.text === "CANCELLED" && Math.random() < 0.20) return false; // Higher chance to remove cancelled
+                // Remove flights that are too far in the past or future to keep the board current
+                if (now.getTime() - flightTime.getTime() > 3 * 60 * 60 * 1000) return false; // Older than 3 hours
+                if (flightTime.getTime() - now.getTime() > 6 * 60 * 60 * 1000) return false; // Further than 6 hours in future
+                return true;
+            });
+
+            if (flights.length < MAX_FLIGHTS && Math.random() < 0.35) { // Slightly higher chance to add new
+                flights.push(generateRandomFlight());
+            } else if (flights.length === 0) {
+                 for(let i = 0; i < Math.floor(MAX_FLIGHTS * 0.7); i++) flights.push(generateRandomFlight());
+            }
+
+            renderFlights();
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function updateScrollingText() {
+            scrollingTextElement.textContent = getRandomElement(dynamicTickerMessages);
+
+            // Re-calculate animation duration
+            // Brief timeout to allow DOM to update textWidth for accurate measurement
+            setTimeout(() => {
+                const containerWidth = scrollingTextElement.parentElement.offsetWidth;
+                const textWidth = scrollingTextElement.offsetWidth;
+                let currentText = scrollingTextElement.textContent;
+
+                // Ensure there's enough padding for a smooth loop
+                let paddingNeeded = Math.ceil(containerWidth / (textWidth / currentText.length || 8)); // 8 is avg char width
+                let paddingString = '&nbsp;'.repeat(Math.max(20, paddingNeeded)); // Min 20 spaces
+
+                scrollingTextElement.innerHTML = currentText + paddingString; // Use innerHTML for &nbsp;
+
+                const newTextWidth = scrollingTextElement.offsetWidth; // Re-measure with padding
+
+                if (newTextWidth > containerWidth) {
+                    // Adjust speed based on the new text length (including padding)
+                    // Longer text should scroll proportionally faster to cover the distance in a reasonable time
+                    // Or, keep speed somewhat constant by adjusting duration based on length
+                    const baseSpeedFactor = 25; // pixels per second (approx)
+                    let duration = newTextWidth / baseSpeedFactor;
+                    scrollingTextElement.style.animationDuration = `${Math.max(15, Math.min(duration, 60))}s`; // Min 15s, Max 60s
+                    scrollingTextElement.style.animationName = 'scroll-left';
+                } else {
+                    scrollingTextElement.style.animationName = 'none'; // No scroll if text is shorter
+                }
+            }, 100);
+        }
+
+
+        function init() {
+            for (let i = 0; i < MAX_FLIGHTS - 2; i++) { // Start with a few flights
+                flights.push(generateRandomFlight());
+            }
+            renderFlights();
+            updateClock();
+            updateScrollingText(); // Initial call
+
+            setInterval(updateFlights, 3200); // Update flights
+            setInterval(updateClock, 1000);   // Update clock
+            setInterval(updateScrollingText, 12000); // Change scrolling text every 12 seconds
+        }
+
+        init();
+    </script>
+</body>
+</html>
