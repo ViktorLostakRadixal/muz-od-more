@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             // Krátká prodleva před spuštěním animace textu po startu videa
             // Spouštíme animaci jen jednou, při prvním 'playing' eventu
-            if (!authorElement.classList.contains('visible')) {
+            if (authorElement && !authorElement.classList.contains('visible')) { // Přidána kontrola existence authorElement
                 setTimeout(() => {
                     console.log("Short delay after video playing, calling setupTextContentAnimation.");
                     setupTextContentAnimation();
                 }, 100);
             }
-        }); // Odebráno { once: true } - může být potřeba reagovat vícekrát, pokud by video bylo např. pozastaveno a znovu spuštěno
+        });
 
         // === NOVÝ Event listener pro konec videa ===
         videoElement.addEventListener('ended', () => {
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             if (imagePanDulakElement) imagePanDulakElement.classList.add('visible');
-            console.log("Showing location/date");
+            console.log("Showing pan-dulak image"); // Upravený log
         }, panDulakDelay);
     }
 
@@ -143,6 +143,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } else {
         console.log("Button #chmatow-web-button not found."); // Log pro případ chyby
+    }
+    // ========================================
+
+    // --- Hamburger Menu Logic ---
+    const hamburgerButton = document.querySelector('.hamburger-menu');
+    const mainNav = document.getElementById('mainNav');
+
+    if (hamburgerButton && mainNav) {
+        const navLinks = mainNav.querySelectorAll('a'); // Získání odkazů uvnitř nav
+
+        hamburgerButton.addEventListener('click', () => {
+            hamburgerButton.classList.toggle('is-active');
+            mainNav.classList.toggle('is-active');
+            const isExpanded = hamburgerButton.classList.contains('is-active');
+            hamburgerButton.setAttribute('aria-expanded', isExpanded);
+            if (isExpanded) {
+                document.body.style.overflow = 'hidden'; // Zabrání posouvání stránky, když je menu otevřené
+            } else {
+                document.body.style.overflow = ''; // Obnoví posouvání
+            }
+        });
+
+        // Přidání posluchače událostí ke každému odkazu v navigaci pro zavření menu
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('is-active')) {
+                    hamburgerButton.classList.remove('is-active');
+                    mainNav.classList.remove('is-active');
+                    hamburgerButton.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = ''; // Obnoví posouvání
+                }
+            });
+        });
+        
+        // Volitelné: Zavření menu při kliknutí mimo něj
+        document.addEventListener('click', (event) => {
+            if (mainNav.classList.contains('is-active') &&
+                !mainNav.contains(event.target) && // Kliknutí není uvnitř menu
+                !hamburgerButton.contains(event.target) && // Kliknutí není na hamburger tlačítko
+                 event.target !== hamburgerButton && // Dodatečná kontrola pro samotné tlačítko
+                !event.target.closest('.hamburger-menu')) { // Kontrola, zda kliknutí není na potomka hamburgeru
+                    hamburgerButton.classList.remove('is-active');
+                    mainNav.classList.remove('is-active');
+                    hamburgerButton.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+            }
+        });
+
+    } else {
+        console.log("Hamburger menu elements not found.");
     }
     // ========================================
 
