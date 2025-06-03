@@ -1,4 +1,8 @@
 /* === Upravené pravidlo pro body === */
+html, body { /* Přidáno html pro jistotu a overflow-x */
+    overflow-x: hidden; /* Zamezení horizontálnímu scrollbaru */
+}
+
 body {
     margin: 0;
     font-family: 'Cormorant Garamond', serif;
@@ -24,24 +28,24 @@ section {
     width: 100%;
     height: 100%;
     z-index: -1;
-    overflow: hidden;
+    overflow: hidden; /* Již zde bylo, ale potvrzuji */
     background-color: black; /* Fallback barva, pokud by nic nefungovalo */
 }
 
-#video-background video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 1; /* Video je nad obrázkem */
-    /* Zajistíme, aby video bylo průhledné, dokud se nenačte */
-    opacity: 1; /* Po načtení bude vidět, pokud se má přehrát */
-}
+    #video-background video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 1; /* Video je nad obrázkem */
+        /* Zajistíme, aby video bylo průhledné, dokud se nenačte */
+        opacity: 1; /* Po načtení bude vidět, pokud se má přehrát */
+    }
 
 /* === PRVNÍ SEKCE (#content) === */
 #content {
@@ -376,7 +380,8 @@ section {
     margin: 2.5em auto; /* Větší odsazení pro tlačítko/odkaz */
 }
 
-#vernissage .download-link {
+#vernissage .download-link,
+#media-kit .download-link /* Aplikujeme stejný styl i na media kit link */ {
     display: inline-block; /* Aby fungoval padding a margin */
     background-color: rgba(255, 255, 255, 0.15); /* Lehké pozadí */
     border: 1px solid rgba(255, 255, 255, 0.5); /* Rámeček */
@@ -390,7 +395,9 @@ section {
 }
 
     #vernissage .download-link:hover,
-    #vernissage .download-link:focus {
+    #vernissage .download-link:focus,
+    #media-kit .download-link:hover,
+    #media-kit .download-link:focus {
         background-color: rgba(255, 255, 255, 0.3); /* Světlejší pozadí při hoveru */
         border-color: #fff;
         color: #fff;
@@ -759,3 +766,180 @@ section {
                 color: #ccc; /* Nebo barva definovaná pro .content-section a:hover */
                 border-bottom-color: rgba(255, 255, 255, 0.9);
             }
+
+
+/* === NOVÉ STYLY PRO CTA TLAČÍTKO === */
+.cta-button {
+    display: inline-block;
+    padding: 12px 28px !important;
+    font-size: clamp(1rem, 1.5vw + 0.7rem, 1.3rem);
+    font-weight: 700;
+    color: #fff;
+    background-color: #d35400; /* Výrazná oranžovo-červená */
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: pulse-animation 2s infinite;
+    font-family: "Poppins", sans-serif; /* Konzistentní s ostatními tlačítky */
+    cursor: pointer;
+}
+
+    .cta-button:hover,
+    .cta-button:focus {
+        background-color: #e67e22; /* Světlejší při najetí */
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        color: #fff; /* Ujistěte se, že barva textu zůstává bílá */
+        outline: none;
+    }
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(211, 84, 0, 0.3);
+    }
+
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 6px 25px rgba(211, 84, 0, 0.5);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(211, 84, 0, 0.3);
+    }
+}
+
+/* === NOVÉ STYLY PRO HAMBURGER MENU === */
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001; /* Nad ostatním obsahem */
+    background: rgba(0,0,0,0.5);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+    .hamburger-menu:hover,
+    .hamburger-menu:focus {
+        background: rgba(0,0,0,0.8);
+        outline: none;
+    }
+
+.hamburger-box {
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+}
+
+.hamburger-inner {
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+        width: 28px;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 2px;
+        position: absolute;
+        transition-property: transform, background-color;
+        transition-duration: 0.25s;
+        transition-timing-function: ease;
+    }
+
+        .hamburger-inner::before,
+        .hamburger-inner::after {
+            content: "";
+            display: block;
+        }
+
+        .hamburger-inner::before {
+            top: -8px;
+        }
+
+        .hamburger-inner::after {
+            bottom: -8px;
+        }
+
+/* Hamburger Active State (X) */
+.hamburger-menu.is-active .hamburger-inner {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+    .hamburger-menu.is-active .hamburger-inner::before {
+        top: 0;
+        transform: rotate(-90deg);
+    }
+
+    .hamburger-menu.is-active .hamburger-inner::after {
+        bottom: 0;
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+
+/* Navigation Menu */
+.main-nav {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Začíná mimo obrazovku */
+    width: 280px;
+    height: 100%;
+    background-color: rgba(15, 15, 15, 0.95);
+    z-index: 1000; /* Pod hamburgerem, nad obsahem */
+    padding-top: 80px;
+    transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    overflow-y: auto;
+}
+
+    .main-nav.is-active {
+        right: 0; /* Vysune se */
+    }
+
+    .main-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .main-nav li {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+        .main-nav li:last-child {
+            border-bottom: none;
+        }
+
+    .main-nav a {
+        display: block;
+        padding: 18px 25px;
+        color: #eee;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-family: 'Cormorant Garamond', serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        .main-nav a:hover,
+        .main-nav a:focus {
+            background-color: rgba(255,255,255,0.1);
+            color: #fff;
+            outline: none;
+        }

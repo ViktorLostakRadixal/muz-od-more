@@ -1,0 +1,89 @@
+# htaccess rules for subdomains and aliases
+# to create new subdomain, create a folder www/subdom/(subdomain name)
+# to create web for alias, create a folder www/domains/(whole domain name)
+
+# htaccess pravidla pro subdomeny a samostatne weby aliasu
+# pro vytvoreni subdomeny vytvorte adresar www/subdom/(nazev subdomeny)
+# pro vytvoreni webu pro alias vytvorte adresar www/domains/(cely domenovy nazev)
+# dalsi info a priklady: http://kb.wedos.com/r/32/webhosting-htaccess.html
+
+RewriteEngine On
+
+# redirect na HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Přesměrování pro /teletnik adresář
+RewriteCond %{REQUEST_URI} ^/teletnik
+RewriteCond %{DOCUMENT_ROOT}/domains/runarov.cz/teletnik -d
+RewriteRule ^teletnik/(.*)$ domains/runarov.cz/teletnik/$1 [L]
+
+# VYLOUČENÍ avirtu.net - DŮLEŽITÉ!
+RewriteCond %{HTTP_HOST} ^(www\.)?avirtu\.net$ [NC]
+RewriteRule ^ - [L] # Zastaví zpracování dalších pravidel
+
+# aliasy - spravne presmerovani pri chybejicim /
+RewriteCond %{HTTP_HOST} ^(www\.)?felissilvestris.cz$
+RewriteRule ^([0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12})$ /get-resource.php?uuid=$1 [L]
+
+# Přesměrování pro doménu michalkalhous.cz bez www
+RewriteCond %{HTTP_HOST} ^michalkalhous\.cz$ [NC]
+RewriteCond %{REQUEST_URI} !^/hostdodomu/
+RewriteRule ^(.*)$ /hostdodomu/$1 [L]
+
+# Přesměrování pro doménu www.michalkalhous.cz
+RewriteCond %{HTTP_HOST} ^www\.michalkalhous\.cz$ [NC]
+RewriteCond %{REQUEST_URI} !^/hostdodomu/
+RewriteRule ^(.*)$ /hostdodomu/$1 [L]
+
+# cele domeny (aliasy)
+RewriteCond %{REQUEST_URI} !^domains/
+RewriteCond %{REQUEST_URI} !^/domains/
+RewriteCond %{HTTP_HOST} ^(www\.)?(.*)$
+RewriteRule (.*) domains/%2/$1 [DPI]
+
+# subdomeny (s nebo bez www na zacatku)
+RewriteCond %{REQUEST_URI} !^subdom/
+RewriteCond %{REQUEST_URI} !^/subdom/
+RewriteCond %{HTTP_HOST} ^(www\.)?(.*)\.([^\.]*)\.([^\.]*)$
+RewriteCond %{DOCUMENT_ROOT}/subdom/%2 -d
+RewriteRule (.*) subdom/%2/$1 [DPI]
+
+# aliasy - spravne presmerovani pri chybejicim /
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^domains/[^/]+/(.+[^/])$ /$1/ [R]
+
+# subdomeny - spravne presmerovani pri chybejicim /
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^subdom/[^/]+/(.+[^/])$ /$1/ [R]
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /teletnik/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !thatsfilm$
+RewriteRule . /teletnik/index.php [L]
+</IfModule>
+# END WordPress
+
+# BEGIN WordPress
+# Direktivy (řádky) mezi 'BEGIN WordPress' a 'END WordPress' jsou
+# dynamicky generované a měly by být upravovány pouze pomocí filtrů WordPressu.
+# Veškeré změny směrnic mezi těmito značkami budou přepsány.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !thatsfilm$
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+
+

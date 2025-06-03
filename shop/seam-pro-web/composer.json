@@ -1,0 +1,14 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/seamapi/php"
+        }
+    ],
+    "require": {
+        "seamapi/seam": "dev-main"
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

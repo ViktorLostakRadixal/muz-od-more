@@ -1,0 +1,34 @@
+2025-05-29T21:36:34+00:00 ERROR Igloohome Token API Error: Chyba při získávání tokenu (HTTP 400) nebo token chybí v odpovědi. Zpráva: invalid_client | Response: {&quot;error&quot;:&quot;invalid_client&quot;}
+2025-05-29T21:36:34+00:00 ERROR Igloohome Token Error (Order ID: 64): Chyba při získávání tokenu (HTTP 400) nebo token chybí v odpovědi. Zpráva: invalid_client | Response: 
+2025-05-29T21:42:21+00:00 ERROR Igloohome Token API Error: Chyba při získávání tokenu (HTTP 400) nebo token chybí v odpovědi. Zpráva: invalid_client | Response: {&quot;error&quot;:&quot;invalid_client&quot;}
+2025-05-29T21:42:21+00:00 ERROR Igloohome Token Error (Order ID: 65): Chyba při získávání tokenu (HTTP 400) nebo token chybí v odpovědi. Zpráva: invalid_client | Response: 
+2025-05-29T21:50:08+00:00 ERROR Igloohome Token API Error: Chyba při získávání tokenu (HTTP 400) nebo token chybí v odpovědi. Zpráva: invalid_client | Response: {&quot;error&quot;:&quot;invalid_client&quot;}
+2025-05-29T21:50:08+00:00 ERROR Igloohome Token Error (Order ID: 66): Chyba při získávání tokenu (HTTP 400) nebo token chybí v odpovědi. Zpráva: invalid_client | Response: 
+2025-05-29T21:53:04+00:00 ERROR Igloohome PIN Generation Error (Order ID: 67, PIN 1): cURL error 60: Peer&#039;s Certificate has expired. | Endpoint: https://api.igloohome.co/devices/OE1X15eaf9e7/algopin/daily | Payload: {"variance":1,"startDate":"2025-05-29T21:00:00Z","endDate":"2025-06-28T21:00:00Z","accessName":"Vstupenka OBJ-67 (1\/1)"}
+2025-05-29T21:57:44+00:00 ERROR Igloohome PIN Generation Failed (Order ID: 68, PIN 1): Status 503 | Endpoint: https://api.igloohome.co/devices/OEIx15eaf9e7/algopin/daily | Payload: {"variance":1,"startDate":"2025-05-29T21:00:00Z","endDate":"2025-06-28T21:00:00Z","accessName":"Vstupenka OBJ-68 (1\/1)"} | Response: &lt;!DOCTYPE html&gt;
+	&lt;html&gt;
+	  &lt;head&gt;
+		&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+		&lt;meta charset=&quot;utf-8&quot;&gt;
+		&lt;title&gt;Application Error&lt;/title&gt;
+		&lt;style media=&quot;screen&quot;&gt;
+		  html,body,iframe {
+			margin: 0;
+			padding: 0;
+		  }
+		  html,body {
+			height: 100%;
+			overflow: hidden;
+		  }
+		  iframe {
+			width: 100%;
+			height: 100%;
+			border: 0;
+		  }
+		&lt;/style&gt;
+	  &lt;/head&gt;
+	  &lt;body&gt;
+		&lt;iframe src=&quot;//www.herokucdn.com/error-pages/application-error.html&quot;&gt;&lt;/iframe&gt;
+	  &lt;/body&gt;
+	&lt;/html&gt;
+2025-05-29T22:08:27+00:00 ERROR Igloohome PIN Generation Failed (Order ID: 69, PIN 1): Status 404 | Endpoint: https://api.igloodeveloper.co/igloohome/devices/OEIx15eaf9e7/algopin/daily | Payload: {"variance":1,"startDate":"2025-05-29T22:00:00Z","endDate":"2025-06-28T22:00:00Z","accessName":"Vstupenka OBJ-69 (1\/1)"} | Response: Not Found

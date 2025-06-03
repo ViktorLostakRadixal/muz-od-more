@@ -1,0 +1,20 @@
+{
+  "name": "@seamapi/php",
+  "version": "2.80.1",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "postversion": "git push --follow-tags",
+    "generate": "node generate-routes.js",
+    "postgenerate": "npm run format",
+    "format": "prettier --write --ignore-path .gitignore ."
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.22.1",
+    "@seamapi/nextlove-sdk-generator": "1.18.1",
+    "@seamapi/types": "1.384.0",
+    "del": "^7.1.0",
+    "prettier": "^3.0.0"
+  }
+}

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NF33GPP65Y"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -34,8 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Passions+Conflict&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=19">
-    <!-- Hotjar Tracking Code for Muž od moře -->
+    <link rel="stylesheet" href="style.css?v=20">
     <script>
         (function (h, o, t, j, a, r) {
             h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
@@ -48,6 +46,26 @@
     </script>
 </head>
 <body>
+    <button class="hamburger-menu" aria-label="Otevřít menu" aria-expanded="false">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+    <nav class="main-nav" id="mainNav">
+        <ul>
+            <li><a href="#content">Úvod</a></li>
+            <li><a href="#about">O výstavě</a></li>
+            <li><a href="#authors">Vystavující a autoři</a></li>
+            <li><a href="#location">Kde nás najdete</a></li>
+            <li><a href="#tickets">Vstupenky</a></li>
+            <li><a href="#surroundings">V okolí</a></li>
+            <li><a href="#media-kit">Pro tisk</a></li>
+            <li><a href="#thanks">Poděkování</a></li>
+            <li><a href="#call-for-memories">Znali jste Chocha?</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
     <div id="video-background">
         <video id="video" muted playsinline autoplay src="assets/video/muz-od-more-pg-bkg.mp4">
         </video>
@@ -59,7 +77,7 @@
         <p id="title" class="fade-in-element"></p>
         <p id="exhibitors" class="fade-in-element"></p>
         <p id="location-date" class="fade-in-element"></p>
-        <img id="pan-dulak" class="fade-in-element" src="assets/img/pan-dulak.png" />
+        <img id="pan-dulak" class="fade-in-element" src="assets/img/pan-dulak.png" alt="Pan Dulák" />
         <div class="scroll-indicator">
             <span>&darr;</span>
         </div>
@@ -127,6 +145,22 @@
 
     </section>
 
+    <section id="tickets" class="content-section">
+        <h2>Vstupenky</h2>
+        <p>
+            <strong>Vstupenky si zakoupíte na <a href="https://avirtu.net/shop">A VIRTÙ Shop</a>.</strong><br />
+            Po zaplacení obdržíte kód, který zadáte do elektronického zámku u dveří a tím si sami otevřete.
+        </p>
+        <p>
+            <a href="https://avirtu.net/shop" target="_blank" rel="noopener noreferrer" class="cta-button">
+                Koupit vstupenky
+            </a>
+        </p>
+        <p>
+            Výstavní prostor je přístupný nonstop – 24 hodin denně, 7 dní v týdnu.
+        </p>
+    </section>
+
     <section id="surroundings" class="content-section">
         <h2>V okolí stojí za&nbsp;návštěvu</h2>
 
@@ -170,47 +204,50 @@
         </div>
     </section>
 
-    <section id="tickets" class="content-section">
-        <h2>Vstupenky</h2>
+    <!--
+        <section id="vernissage" class="content-section">
+            <h2>Vernisáž</h2>
+
+            <p class="vernissage-intro">
+                Srdečně vás zveme na&nbsp;slavnostní zahájení výstavy <strong>Muž od&nbsp;moře</strong>
+            </p>
+
+            <p class="vernissage-date-time">
+                <strong>v&nbsp;sobotu 31.&nbsp;května 2025 v&nbsp;17:00</strong><br>
+                v&nbsp;Kreativu Teletník, Runářov u&nbsp;Konice
+            </p>
+
+            <p>
+                Přijďte s&nbsp;námi otevřít tuto jedinečnou poctu Adrianu "Chocho" Sittovi a&nbsp;ponořit se&nbsp;do&nbsp;světa umění, vzpomínek a&nbsp;příběhů vymykajících se&nbsp;všednosti. Zváni jsou nejen všichni, kdo Adriana znali, ale především <strong>všichni příznivci současného umění</strong> a&nbsp;jeho nečekaných přesahů.
+            </p>
+            <p>
+                Nebude chybět drobné občerstvení (včetně Chochových oblíbených čínských polévek!), hudba a&nbsp;samozřejmě umění samotné. Vstup je zdarma.
+            </p>
+
+            <div class="invitation-download">
+                <a href="assets/downloads/muz-od-more-pozvanka-vernisaz.pdf" class="download-link" download="Muž od moře - pozvánka.pdf">
+                    Stáhnout oficiální pozvánku (PDF)
+                </a>
+                <a href="https://fb.me/e/6fVXIrCuK" target="_blank" rel="noopener noreferrer" class="fb-event-link">
+                    Připojte se k události na Facebooku
+                </a>
+            </div>
+
+            <p class="invitation-share">
+                Budeme rádi, když nám pomůžete s&nbsp;šířením pozvánky – sdílejte ji prosím s&nbsp;přáteli a&nbsp;známými, které by výstava mohla oslovit. Děkujeme!
+            </p>
+        </section>
+    -->
+
+    <section id="media-kit" class="content-section">
+        <h2>Pro tisk</h2>
         <p>
-            <strong>Vstupenky budete moci zakoupit online po spuštění e-shopu (od 4. června).</strong>
-            Po zaplacení obdržíte kód, který zadáte do elektronického zámku u dveří a tím si sami otevřete.
+            Materiály pro média, včetně fotografií ve vysokém rozlišení a loga, naleznete v našem media kitu.
         </p>
         <p>
-            Výstavní prostor je přístupný nonstop – 24 hodin denně, 7 dní v týdnu (po zakoupení vstupenky s kódem).
-        </p>
-    </section>
-
-    <section id="vernissage" class="content-section">
-        <h2>Vernisáž</h2>
-
-        <p class="vernissage-intro">
-            Srdečně vás zveme na&nbsp;slavnostní zahájení výstavy <strong>Muž od&nbsp;moře</strong>
-        </p>
-
-        <p class="vernissage-date-time">
-            <strong>v&nbsp;sobotu 31.&nbsp;května 2025 v&nbsp;17:00</strong><br>
-            v&nbsp;Kreativu Teletník, Runářov u&nbsp;Konice
-        </p>
-
-        <p>
-            Přijďte s&nbsp;námi otevřít tuto jedinečnou poctu Adrianu "Chocho" Sittovi a&nbsp;ponořit se&nbsp;do&nbsp;světa umění, vzpomínek a&nbsp;příběhů vymykajících se&nbsp;všednosti. Zváni jsou nejen všichni, kdo Adriana znali, ale především <strong>všichni příznivci současného umění</strong> a&nbsp;jeho nečekaných přesahů.
-        </p>
-        <p>
-            Nebude chybět drobné občerstvení (včetně Chochových oblíbených čínských polévek!), hudba a&nbsp;samozřejmě umění samotné. Vstup je zdarma.
-        </p>
-
-        <div class="invitation-download">
-            <a href="assets/downloads/muz-od-more-pozvanka-vernisaz.pdf" class="download-link" download="Muž od moře - pozvánka.pdf">
-                Stáhnout oficiální pozvánku (PDF)
+            <a href="https://drive.google.com/drive/folders/1KGqI9QxxejCE4tSiXdFiOIO6NvfUFFso?usp=sharing" target="_blank" rel="noopener noreferrer" class="download-link">
+                Stáhnout Media Kit
             </a>
-            <a href="https://fb.me/e/6fVXIrCuK" target="_blank" rel="noopener noreferrer" class="fb-event-link">
-                Připojte se k události na Facebooku
-            </a>
-        </div>
-
-        <p class="invitation-share">
-            Budeme rádi, když nám pomůžete s&nbsp;šířením pozvánky – sdílejte ji prosím s&nbsp;přáteli a&nbsp;známými, které by výstava mohla oslovit. Děkujeme!
         </p>
     </section>
 
@@ -223,7 +260,7 @@
             Alena&nbsp;alla&nbsp;SRNCOVÁ, Alena&nbsp;Janková, Alexandr&nbsp;Rusevský&nbsp;(hruucoon), Andrejka, Balin, Barbora&nbsp;Kabeláčová, Bohouš, Bratránek&nbsp;Pypof, Goro, Hana&nbsp;Bana, Jana&nbsp;Janahe&nbsp;Hejdánková, Jana&nbsp;Průchová, Jáňa&nbsp;Kalinová, Josef&nbsp;Pazdera, Kakof, Kamila&nbsp;Bubelová&nbsp;(Chiméra), Karolína&nbsp;Říhová, Lenka&nbsp;Janatová&nbsp;(noblond), Martin&nbsp;Králíček, Michal&nbsp;Hájek&nbsp;(Majkl&nbsp;Majkl), Natálie&nbsp;Sittová&nbsp;(Honková), pan&nbsp;Zelí, Pavel&nbsp;Kalenda, Pavla&nbsp;Rychtářová, Pepa, Petra&nbsp;Steinerová, Vitásek, Vladimír&nbsp;Sitta, Vladimíra&nbsp;"Váva"&nbsp;Moravcová, vynálezce&nbsp;čínské&nbsp;polévky, Zelín, Zuzana&nbsp;Pincová, Zuzana&nbsp;Průchová&nbsp;(Durajová).
         </p>
         <p>
-            <a href="https://www.wedos.cz"><img class="partner-logo" src="assets/img/wedos-1024-128-max.png" /></a>
+            <a href="https://www.wedos.cz"><img class="partner-logo" src="assets/img/wedos-1024-128-max.png" alt="WEDOS logo"></a>
         </p>
         <p>
             A také děkujeme kolegům z letiště v Dublinu.
@@ -260,6 +297,6 @@
         <p>A&nbsp;aby bylo všechno jako dřív.</p>
     </section>
 
-    <script src="script.js?v=12"></script>
+    <script src="script.js?v=13"></script>
 </body>
 </html>
