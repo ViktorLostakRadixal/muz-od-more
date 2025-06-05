@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muž od moře – Výstava v Kreativu Teletník (Na šířku)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem; 
+        }
+        .title-font {
+            font-family: 'Cinzel', serif;
+        }
+        .subtitle-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .brand-color-primary {
+            color: #003366;
+        }
+        .brand-color-secondary {
+            color: #D1B06B;
+        }
+        .brand-bg-primary {
+            background-color: #003366;
+        }
+        .brand-bg-secondary {
+            background-color: #f0ead6;
+        }
+
+        .microsite-landscape-container {
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1000px; 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+        @media (min-width: 768px) { /* md breakpoint */
+            .microsite-landscape-container {
+                flex-direction: row; 
+            }
+            .left-column {
+                /* Ensure the image can stretch by allowing the column to have a flexible height */
+                /* The height will be determined by the content of the right column,
+                   and flex-grow on the image section will fill available space. */
+            }
+        }
+
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                min-height: unset;
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-important { /* Class to override no-print if an element should be shown in print */
+                display: block !important; /* Or inline, flex, etc., as appropriate */
+            }
+            .microsite-landscape-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+                border-radius: 0 !important;
+                display: flex !important; 
+                flex-direction: row !important; 
+            }
+            .print-col-height { 
+                /* Attempt to make columns equal height in print. This can be tricky.
+                   The browser's print engine might behave differently.
+                   Flexbox's ability to equalize height across page breaks is limited. */
+                 display: flex;
+                 flex-direction: column;
+                 height: auto; /* Let content define height, flex will try to match */
+            }
+             .print-image-section {
+                flex-grow: 1; /* Allow image section to take space */
+             }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="microsite-landscape-container">
+        <!-- Levá část - Hlavička, Obrázek, Kdo byl, Info -->
+        <div class="md:w-1/2 flex flex-col print-col-height left-column">
+            <header class="brand-bg-secondary p-4 lg:p-6 text-center">
+                <h1 class="title-font text-3xl lg:text-4xl font-bold brand-color-primary">Muž od moře</h1>
+                <p class="subtitle-font text-lg lg:text-xl brand-color-primary italic mt-1">Pocta Adriánu „Chocho“ Sittovi</p>
+            </header>
+
+            <section class="w-full flex-grow relative print-image-section"> 
+                <img src="assets/img/IMG_20250513_181025.jpg" 
+                     alt="Fotografie z výstavy Muž od moře"
+                     class="absolute inset-0 w-full h-full object-cover" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x1000/cccccc/333333?text=Obr%C3%A1zek+nenalezen&font=montserrat';">
+            </section>
+
+            <section class="p-4 lg:p-6">
+                <h2 class="subtitle-font text-xl lg:text-2xl brand-color-primary font-semibold mb-2">Kdo byl Muž od moře?</h2>
+                <p class="text-gray-700 leading-relaxed text-sm lg:text-base">
+                    Adrián „Chocho“ Sitta. Svérázný cestovatel, blogger z úsvitu internetu, neklidný duch. Jeho život byl dobrodružstvím plným sarkasmu, bolesti i neotřelého humoru. Výstava v Kreativu Teletník je oknem do jeho fascinujícího světa.
+                </p>
+            </section>
+
+            <div class="p-4 lg:p-6 brand-bg-primary text-white text-center mt-auto"> 
+                <p class="text-lg font-semibold mb-1">Výstava potrvá do 31. prosince 2025</p>
+                <p class="text-sm">Kreativum Teletník, Runářov u Konice</p>
+            </div>
+        </div>
+
+        <!-- Pravá část - Textový obsah a QR -->
+        <div class="md:w-1/2 flex flex-col print-col-height">
+            <main class="p-4 lg:p-8 flex-grow overflow-y-auto"> 
+                <section class="mb-6">
+                    <h2 class="subtitle-font text-xl lg:text-2xl brand-color-primary font-semibold mb-2">Co vás čeká v Teletníku?</h2>
+                    <div class="space-y-2 text-gray-700 leading-relaxed text-sm lg:text-base">
+                        <p><strong class="brand-color-primary">Unikátní prostor:</strong> Kreativum Teletník v Runářově – místo s duší a historií.</p>
+                        <p><strong class="brand-color-primary">Současné umění:</strong> Díla inspirovaná Chochovým odkazem od předních českých umělců.</p>
+                        <p><strong class="brand-color-primary">Avatar CHOCHO (AI):</strong> Promluvte si s digitálním otiskem Chochovy osobnosti.</p>
+                        <p><strong class="brand-color-primary">Dostupnost 24/7:</strong> Navštivte výstavu kdykoli díky unikátním vstupním kódům.</p>
+                        <p><strong class="brand-color-primary">Atmosféra & Občerstvení:</strong> Zastávka pro zamyšlení s drobným občerstvením zdarma.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="subtitle-font text-xl lg:text-2xl brand-color-primary font-semibold mb-2">Proč přijít?</h2>
+                    <p class="text-gray-700 leading-relaxed text-sm lg:text-base mb-3">
+                        Protože "Muž od moře" je víc než výstava. Je to zážitek, který rezonuje s duchem Konicka. Objevte silný příběh, inspirujte se. Otevřeno všem.
+                    </p>
+                    <p class="subtitle-font text-md italic text-center brand-color-primary px-3 py-1 border-l-2 border-yellow-500 bg-yellow-50 rounded-md">
+                        "...výstava v bývalém teletníku kdesi na konci světa..."
+                    </p>
+                </section>
+            </main>
+
+            <footer class="p-4 lg:p-6 text-center border-t border-gray-200 mt-auto"> 
+                 <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4">
+                    <div class="text-center sm:text-left">
+                        <a href="https://www.muz-od-more.cz" target="_blank" rel="noopener noreferrer"
+                           class="inline-block bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded-md text-md transition-colors duration-300">
+                            WWW.MUZ-OD-MORE.CZ
+                        </a>
+                        <p class="text-xs text-gray-600 mt-1">Více informací a vstupenky</p>
+                    </div>
+                    <div class="mt-4 sm:mt-0 print-important"> <!-- Změněno: QR kód bude viditelný i v tisku -->
+                         <img src="assets/img/qrcode.svg"
+                             alt="QR kód pro web výstavy"
+                             class="mx-auto border-2 border-gray-300 rounded-md w-24 h-24"
+                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/cccccc/333333?text=QR&font=montserrat';">
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>
