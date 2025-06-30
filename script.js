@@ -1,4 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const preloader = document.getElementById('preloader');
+    const preloaderText = document.getElementById('preloader-text');
+    const targetWord = document.getElementById('target-word');
+    const censorBar = document.getElementById('censor-bar');
+
+    // --- Sekvence animací ---
+
+    // KROK 1: Zobrazit úvodní text
+    setTimeout(() => {
+        preloaderText.classList.add('visible');
+    }, 500);
+
+    // KROK 2: Zobrazit cenzurní pruh přes slovo "zemřeš"
+    setTimeout(() => {
+        const rect = targetWord.getBoundingClientRect();
+        censorBar.style.top = `${rect.top}px`;
+        censorBar.style.left = `${rect.left}px`;
+        censorBar.style.width = `${rect.width}px`;
+        censorBar.style.height = `${rect.height}px`;
+        censorBar.classList.add('visible');
+    }, 2000);
+
+    // KROK 3: Skrýt text
+    setTimeout(() => {
+        preloaderText.classList.add('fade-out');
+    }, 3500);
+
+    // KROK 4: Transformovat pruh na tlačítko (dvoufázově)
+    setTimeout(() => {
+        const rect = censorBar.getBoundingClientRect();
+        censorBar.style.top = `${rect.top}px`;
+        censorBar.style.left = `${rect.left}px`;
+        censorBar.style.width = `${rect.width}px`;
+        censorBar.style.height = `${rect.height}px`;
+        censorBar.classList.add('fixed-to-corner');
+
+        // S malým zpožděním spustíme samotnou animaci do rohu.
+        setTimeout(() => {
+            // *** OPRAVA: Odstranění inline stylů před přidáním finální třídy ***
+            censorBar.style.top = '';
+            censorBar.style.left = '';
+            censorBar.style.width = '';
+            censorBar.style.height = '';
+
+            censorBar.classList.add('is-button');
+        }, 50);
+
+    }, 4000);
+
+    // KROK 5: Skrýt bílý preloader, zůstane jen tlačítko
+    setTimeout(() => {
+        preloader.classList.add('fade-out');
+        preloader.style.pointerEvents = 'none';
+    }, 5000);
+
+
     // --- Elementy ---
     const videoElement = document.getElementById('video');
     const imageBackgroundElement = document.querySelector('#content #image-background');
