@@ -1,3 +1,5 @@
+history.scrollRestoration = 'manual';
+
 document.addEventListener('DOMContentLoaded', () => {
 	// --- NOVÁ SEKCE PRO ANIMACI PRELOADERU ---
 	const preloader = document.getElementById('preloader');
@@ -231,4 +233,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log('Hamburger menu elements not found.');
 	}
 	// ========================================
+
+
+	// === NOVÁ LOGIKA PRO PŘEPÍNÁNÍ SEKCÍ ALTERNATIVNÍ REALITY ===
+	const realitySections = document.querySelectorAll('.alternate-reality');
+
+	if (realitySections.length > 0) {
+		realitySections.forEach(section => {
+			section.addEventListener('click', function (event) {
+				// Tato podmínka zajistí, že kód se provede pouze tehdy,
+				// když je kliknuto přímo na element <section> (kde jsou i pseudo-elementy),
+				// a ne na jeho potomky (jako <h2>, <p>, <ul> atd.).
+				// Když je sekce sbalená (má třídu .hidden-reality), její potomci
+				// mají 'display: none', takže jakýkoli klik bude směřovat
+				// přímo na <section> a přepínač bude fungovat.
+				if (event.target === this) {
+					this.classList.toggle('hidden-reality');
+				}
+			});
+		});
+	}
+	// === KONEC NOVÉ LOGIKY ===
 }); // Konec DOMContentLoaded
