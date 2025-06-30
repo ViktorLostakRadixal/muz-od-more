@@ -1,5 +1,7 @@
 /* === Upravené pravidlo pro body === */
-html, body { /* Přidáno html pro jistotu a overflow-x */
+html,
+body {
+    /* Přidáno html pro jistotu a overflow-x */
     overflow-x: hidden; /* Zamezení horizontálnímu scrollbaru */
 }
 
@@ -10,6 +12,7 @@ body {
     /* Váš upravený text-shadow */
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 1);
     scroll-behavior: smooth;
+    background-color: #0f0f0f;
 }
 
 /* ===== NOVÉ OBECNÉ PRAVIDLO PRO VŠECHNY SEKCE ===== */
@@ -17,7 +20,6 @@ section {
     box-sizing: border-box; /* Důležité, aby padding byl součástí výšky */
 }
 /* ================================================== */
-
 
 #video-background {
     position: fixed;
@@ -88,7 +90,10 @@ section {
     }
 
 /* Styly pro textový obsah v úvodní sekci */
-#author, #title, #exhibitors, #location-date {
+#author,
+#title,
+#exhibitors,
+#location-date {
     margin: 0.5em 0;
 }
 
@@ -141,7 +146,10 @@ section {
         font-size: clamp(1.8rem, 8vw + 1rem, 3rem);
     }
 
-    #author, #location-date, #exhibitors { /* Přidáno #exhibitors */
+    #author,
+    #location-date,
+    #exhibitors {
+        /* Přidáno #exhibitors */
         margin: 0.8em 0;
     }
     /* Můžeme zmenšit padding pro #content na mobilu, aby bylo více místa */
@@ -194,7 +202,6 @@ section {
     }
 }
 
-
 /* Styly pro další obsahové sekce */
 .content-section {
     padding: 6vh 5vw;
@@ -211,7 +218,8 @@ section {
     .content-section h2,
     .content-section p, /* Aplikováno i na p */
     .content-section ul, /* Aplikováno i na ul */
-    .content-section .role-block { /* Aplikováno i na role-block */
+    .content-section .role-block {
+        /* Aplikováno i na role-block */
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
@@ -289,7 +297,8 @@ section {
     color: #fff;
 }
 
-    .role-name.minor, .role-name.minor a {
+    .role-name.minor,
+    .role-name.minor a {
         color: rgba(255, 255, 255, 0.6);
     }
 
@@ -544,7 +553,7 @@ section {
     }
 
     .crash-cafe-style .cafe-title {
-        font-family: "Passions Conflict", cursive;
+        font-family: 'Passions Conflict', cursive;
         font-weight: 400; /* Google Fonts má jen 400 */
         font-size: clamp(4rem, 10vw + 1rem, 8rem); /* Větší, výrazný */
         color: #fff;
@@ -588,7 +597,7 @@ section {
         border-radius: 5px;
         text-decoration: none;
         font-weight: 600;
-        font-family: "Poppins", sans-serif; /* Font tlačítka z Crash Cafe */
+        font-family: 'Poppins', sans-serif; /* Font tlačítka z Crash Cafe */
         transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
         font-size: clamp(0.9rem, 1.3vw + 0.5rem, 1.1rem);
     }
@@ -624,7 +633,7 @@ section {
     }
 
     .chmatow-style .chmatow-title {
-        font-family: "Creepster", cursive; /* <<< POUŽIT FONT Creepster */
+        font-family: 'Creepster', cursive; /* <<< POUŽIT FONT Creepster */
         font-weight: 400; /* Tento font má jen jednu tloušťku */
         font-size: clamp(3rem, 8vw + 1rem, 6rem); /* Velké písmo */
         color: #c00; /* Temně rudá? Nebo #9a9a9a; - zašlá šedá? */
@@ -687,7 +696,7 @@ section {
         border-radius: 3px; /* Méně zakulacené */
         text-decoration: none;
         font-weight: 400; /* Normální tloušťka */
-        font-family: "Poppins", sans-serif; /* Můžeme použít Poppins */
+        font-family: 'Poppins', sans-serif; /* Můžeme použít Poppins */
         transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         font-size: clamp(0.9rem, 1.3vw + 0.5rem, 1.1rem);
         cursor: pointer; /* Ukazatel ruky pro tlačítko */
@@ -712,7 +721,8 @@ section {
     }
 
 /* === Styly pro tlačítko FB události === */
-#vernissage .fb-event-link { /* Nová třída pro FB odkaz */
+#vernissage .fb-event-link {
+    /* Nová třída pro FB odkaz */
     display: inline-block;
     background-color: #3b5998; /* Facebook modrá */
     border: 1px solid #3b5998;
@@ -755,7 +765,8 @@ section {
 
         /* Pokud chcete, aby se odkaz choval stejně jako ostatní odkazy v .content-section: */
         .project-initiative-link a,
-        .project-initiative-link a:visited { /* Přidáno :visited pro konzistenci */
+        .project-initiative-link a:visited {
+            /* Přidáno :visited pro konzistenci */
             color: #fff; /* Nebo barva definovaná pro .content-section a */
             text-decoration: none;
             font-weight: 500;
@@ -769,7 +780,6 @@ section {
                 color: #ccc; /* Nebo barva definovaná pro .content-section a:hover */
                 border-bottom-color: rgba(255, 255, 255, 0.9);
             }
-
 
 /* === NOVÉ STYLY PRO CTA TLAČÍTKO === */
 .cta-button {
@@ -786,7 +796,7 @@ section {
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     animation: pulse-animation 2s infinite;
-    font-family: "Poppins", sans-serif; /* Konzistentní s ostatními tlačítky */
+    font-family: 'Poppins', sans-serif; /* Konzistentní s ostatními tlačítky */
     cursor: pointer;
 }
 
@@ -822,7 +832,7 @@ section {
     top: 20px;
     right: 20px;
     z-index: 1001; /* Nad ostatním obsahem */
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     border: none;
     padding: 10px;
     border-radius: 50%;
@@ -837,7 +847,7 @@ section {
 
     .hamburger-menu:hover,
     .hamburger-menu:focus {
-        background: rgba(0,0,0,0.8);
+        background: rgba(0, 0, 0, 0.8);
         outline: none;
     }
 
@@ -869,7 +879,7 @@ section {
 
         .hamburger-inner::before,
         .hamburger-inner::after {
-            content: "";
+            content: '';
             display: block;
         }
 
@@ -908,7 +918,7 @@ section {
     z-index: 1000; /* Pod hamburgerem, nad obsahem */
     padding-top: 80px;
     transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
 }
 
@@ -923,7 +933,7 @@ section {
     }
 
     .main-nav li {
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
         .main-nav li:last-child {
@@ -942,7 +952,7 @@ section {
 
         .main-nav a:hover,
         .main-nav a:focus {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             color: #fff;
             outline: none;
         }
@@ -969,7 +979,8 @@ section {
         font-size: clamp(1.5rem, 3vw + 0.8rem, 2.5rem);
     }
 
-    .alternate-reality p, .alternate-reality li {
+    .alternate-reality p,
+    .alternate-reality li {
         text-align: left;
         font-size: clamp(0.9rem, 1.2vw + 0.5rem, 1.1rem);
         line-height: 1.8;
@@ -986,6 +997,7 @@ section {
         list-style-type: '» ';
         padding-left: 20px;
     }
+
 .hidden-reality {
     /* Skrytý stav */
     max-height: 0;
@@ -1010,12 +1022,8 @@ section {
     align-items: center;
     z-index: 9999;
     opacity: 1;
-    transition: opacity 1s ease-out;
+    /* Odebrána transition, aby zmizení bylo ostré */
 }
-
-    #preloader.fade-out {
-        opacity: 0;
-    }
 
 /* --- Textový obsah --- */
 #preloader-text {
@@ -1026,46 +1034,17 @@ section {
     position: relative;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    text-shadow: none; /* Přidáno - žádný stín */
 }
 
     #preloader-text.visible {
         opacity: 1;
     }
 
-    #preloader-text.fade-out {
-        opacity: 0;
-    }
-
-/* --- Cenzurní pruh / Tlačítko --- */
-#censor-bar {
-    position: absolute;
-    background-color: #000;
-    opacity: 0;
-    transition: all 1s ease-in-out;
-    z-index: 10000;
+/* --- NOVÝ STYL pro slovo "zemřeš" --- */
+#target-word {
+    background-color: #000000; /* Stejná jako barva textu, aby ho skryla */
+    color: #000000;
+    padding: 0 0.1em; /* Malý padding, aby obdélník nebyl moc těsný */
+    transition: background-color 1.5s ease-in-out; /* Animace odhalení */
 }
-
-    #censor-bar.visible {
-        opacity: 1;
-    }
-
-    #censor-bar.fixed-to-corner {
-        position: fixed;
-    }
-
-    /* Finální stav - tlačítko v rohu */
-    #censor-bar.is-button {
-        bottom: 20px;
-        right: 20px;
-        top: auto;
-        left: auto;
-        width: 50px;
-        height: 25px;
-        border: 2px solid #fff;
-        cursor: pointer;
-    }
-        /* Hover efekt pro tlačítko */
-        #censor-bar.is-button:hover {
-            transform: scale(1.1);
-            border-color: #ffff00;
-        }
