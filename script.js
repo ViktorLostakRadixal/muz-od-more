@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Měníme barvu pozadí z černé na bílou. CSS se postará o plynulý přechod.
 	setTimeout(() => {
 		if (targetWord) {
-			targetWord.style.backgroundColor = '#ffffff'; // Barva pozadí preloaderu
+			//targetWord.style.backgroundColor = '#ffffff'; // Barva pozadí preloaderu
 		}
 	}, 2500); // Zpoždění 2.5 sekundy.
 

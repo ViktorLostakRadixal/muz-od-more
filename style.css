@@ -1022,9 +1022,10 @@ section {
     }
 
 .hidden-reality {
+    max-width: 8em;
     padding: 0;
+    border: 1px solid #666;
     max-height: 28px;
-    max-width: 6em;
 }
 
 
